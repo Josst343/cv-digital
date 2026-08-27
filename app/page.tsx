@@ -1,5 +1,6 @@
 import { aspirations, education, experience, profile, projects, skills } from "./data/profile";
 import DownloadCvButton from "./components/download-cv-button";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -39,9 +40,23 @@ export default function Home() {
               <DownloadCvButton />
             </div>
           </div>
-          <p className="border-l border-emerald-400 pl-5 text-sm leading-7 text-zinc-500">
-            {profile.availability}
-          </p>
+          <div className="flex flex-col items-start gap-8 lg:items-end">
+            <div
+              className="relative aspect-square w-44 overflow-hidden border border-emerald-400/60 sm:w-52"
+            >
+              <Image
+                className="object-cover"
+                src="/images/profile-photo.jpg"
+                alt="Fotografía profesional de Josue Misael Flores Fernandez"
+                fill
+                priority
+                sizes="(max-width: 640px) 176px, 208px"
+              />
+            </div>
+            <p className="border-l border-emerald-400 pl-5 text-sm leading-7 text-zinc-500 lg:max-w-xs">
+              {profile.availability}
+            </p>
+          </div>
         </section>
 
         <section id="sobre-mi" className="grid gap-8 border-t border-zinc-800 py-16 md:grid-cols-[0.35fr_1fr]">

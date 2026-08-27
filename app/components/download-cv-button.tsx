@@ -4,16 +4,29 @@ import { useState } from "react";
 import { jsPDF } from "jspdf";
 import { aspirations, education, experience, profile, projects, skills } from "../data/profile";
 
+const loadPhoto = async () => {
+  const response = await fetch("/images/profile-photo.jpg");
+  const photoBlob = await response.blob();
+
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(photoBlob);
+  });
+};
+
 export default function DownloadCvButton() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState("");
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     setIsGenerating(true);
     setError("");
 
     try {
       const pdfDocument = new jsPDF({ format: "a4", unit: "mm" });
+      const photoDataUrl = await loadPhoto();
       const margin = 18;
       const contentWidth = 210 - margin * 2;
       const bottomMargin = 280;
@@ -63,6 +76,7 @@ export default function DownloadCvButton() {
       pdfDocument.setFontSize(9);
       pdfDocument.setTextColor("#52525b");
       pdfDocument.text(`${profile.email}  |  ${profile.phone}`, margin, y);
+      pdfDocument.addImage(photoDataUrl, "JPEG", 154, 12, 38, 38);
       y += 9;
 
       addSectionTitle("Perfil profesional");
