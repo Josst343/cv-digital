@@ -3,14 +3,79 @@ export const profile = {
   role: "Developer Sr",
   headline: "Ingeniería Fullstack con propósito: código eficiente, arquitecturas escalables.",
   intro:
-    "Senior Fullstack Software Developer con amplia experiencia en seguridad, optimización de rendimiento, arquitecturas distribuidas, APIs y cumplimiento normativo (PCI DSS, OWASP, OAuth 2.0). En busca de nuevos retos y oportunidades para aplicar mis habilidades en proyectos innovadores y de alto impacto.",
+    "Ingeniero en Software no titulado y Senior Fullstack Software Developer, con experiencia en el sector financiero y retail desde 2020. Especializado en backend con Java, arquitectura de servicios, seguridad y optimización de sistemas críticos.",
   summary:
-    "Senior Fullstack Software Developer especializado en el diseño, modernización y aseguramiento de arquitecturas distribuidas de alto impacto. Cuento con una sólida trayectoria resolviendo cuellos de botella en sistemas críticos, optimizando el rendimiento de microservicios transaccionales de alta demanda y garantizando estándares estrictos de seguridad y cumplimiento normativo (PCI DSS, OAuth 2.0, OWASP). Experto en conectar la lógica de negocio sólida con infraestructuras eficientes en la nube (GCP, Docker, Apigee).",
+    "Actualmente me desempeño como Developer Sr en Coppel, donde participo en nuevos desarrollos y en la evolución de servicios de alta demanda. Mi experiencia incluye backend con Java y Spring Boot, solución de vulnerabilidades, reducción de tiempos de respuesta y diseño de software basado en alta cohesión y bajo acoplamiento.",
   availability: "Disponible para nuevos proyectos y colaboraciones.",
   email: "josue5325@gmail.com",
   phone: "+52 551 603 9201",
   copyrightYear: "2026",
 };
+
+export const aspirations = [
+  {
+    label: "01",
+    title: "Dominio de la inteligencia artificial",
+    description:
+      "Profundizar en inteligencia artificial, modelos generativos y automatización para crear soluciones útiles, seguras y conectadas con las necesidades reales del negocio.",
+  },
+  {
+    label: "02",
+    title: "Continuar mis estudios de arquitectura",
+    description:
+      "Seguir fortaleciendo mis conocimientos en arquitectura de software para diseñar sistemas distribuidos más resilientes, escalables y sostenibles.",
+  },
+];
+
+export const experience = [
+  {
+    period: "2022 - Actualidad",
+    role: "Developer Sr",
+    company: "Coppel",
+    description:
+      "Participación en nuevos desarrollos y evolución de servicios con Java, Spring Boot, Maven, JUnit, GraphQL y APIs. Implementación de soluciones de vulnerabilidades y optimización de rendimiento mediante ajustes de pools de conexiones, reducción del consumo innecesario de memoria y aplicación de alta cohesión y bajo acoplamiento.",
+  },
+  {
+    period: "2020 - 2022",
+    role: "Software Developer",
+    company: "BBVA - Terminal Financiero",
+    description:
+      "Desarrollo y mantenimiento de soluciones para el terminal financiero, trabajando con servicios backend, Java, pruebas automatizadas y resolución de incidencias en entornos de alta exigencia operativa.",
+  },
+];
+
+export const education = [
+  {
+    period: "Estudios profesionales",
+    title: "Ingeniería de Software",
+    institution: "No titulado",
+    description:
+      "Formación en fundamentos de desarrollo de software, diseño de sistemas y construcción de soluciones tecnológicas. Actualmente continúo fortaleciendo mis conocimientos en arquitectura de software y sistemas distribuidos.",
+  },
+];
+
+export const skills = [
+  {
+    category: "Backend",
+    items: "Java, Spring Boot, Maven, JUnit, GraphQL y APIs REST",
+  },
+  {
+    category: "Calidad y seguridad",
+    items: "Cobertura de pruebas, solución de vulnerabilidades y buenas prácticas de diseño",
+  },
+  {
+    category: "Rendimiento",
+    items: "Optimización de pools de conexiones, reducción de consumo de memoria y tiempos de respuesta",
+  },
+  {
+    category: "Datos y lenguajes",
+    items: "PostgreSQL, MongoDB, JavaScript, Nacar, Go, C, C# y C++",
+  },
+  {
+    category: "Colaboración",
+    items: "Experiencia trabajando con equipos y personas de distintos países; inglés técnico en desarrollo",
+  },
+];
 
 export const projects = [
   {
