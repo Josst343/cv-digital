@@ -1,5 +1,6 @@
 import { aspirations, education, experience, profile, projects, skills } from "./data/profile";
 import DownloadCvButton from "./components/download-cv-button";
+import ThemeAccentSelector from "./components/theme-accent-selector";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
@@ -21,14 +22,17 @@ export default function Home() {
         <a className="font-mono text-sm font-semibold tracking-widest text-emerald-400" href="#inicio">
           {profile.name}
         </a>
-        <div className="hidden gap-6 text-sm text-zinc-400 sm:flex">
-          <a className="transition-colors hover:text-white" href="#sobre-mi">Sobre mí</a>
-          <a className="transition-colors hover:text-white" href="#trayectoria">Trayectoria</a>
-          <a className="transition-colors hover:text-white" href="#educacion">Educación</a>
-          <a className="transition-colors hover:text-white" href="#habilidades">Habilidades</a>
-          <a className="transition-colors hover:text-white" href="#aspiraciones">Aspiraciones</a>
-          <a className="transition-colors hover:text-white" href="#proyectos">Proyectos</a>
-          <a className="transition-colors hover:text-white" href="#contacto">Contacto</a>
+        <div className="flex items-center gap-4">
+          <div className="hidden gap-5 text-sm text-zinc-400 lg:flex">
+            <a className="transition-colors hover:text-white" href="#sobre-mi">Sobre mí</a>
+            <a className="transition-colors hover:text-white" href="#trayectoria">Trayectoria</a>
+            <a className="transition-colors hover:text-white" href="#educacion">Educación</a>
+            <a className="transition-colors hover:text-white" href="#habilidades">Habilidades</a>
+            <a className="transition-colors hover:text-white" href="#aspiraciones">Aspiraciones</a>
+            <a className="transition-colors hover:text-white" href="#proyectos">Proyectos</a>
+            <a className="transition-colors hover:text-white" href="#contacto">Contacto</a>
+          </div>
+          <ThemeAccentSelector />
         </div>
       </nav>
 
@@ -50,7 +54,7 @@ export default function Home() {
               {profile.intro}
             </p>
             <div className="mt-10 flex flex-wrap gap-4 print-hidden">
-              <a className="rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_0_22px_rgba(52,211,153,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#contacto">
+              <a className="rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#contacto">
                 Contactarme
               </a>
               <a className="rounded-full border border-zinc-700 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:bg-zinc-800/80 hover:shadow-[0_0_18px_rgba(161,161,170,0.12)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#proyectos">
@@ -61,7 +65,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-start gap-8 lg:items-end">
             <div
-              className="group relative aspect-square w-44 overflow-hidden border border-emerald-400/60 transition duration-300 hover:border-emerald-300 hover:shadow-[0_0_28px_rgba(52,211,153,0.28)] sm:w-52"
+              className="group relative aspect-square w-44 overflow-hidden rounded-xl border border-emerald-400/60 shadow-[0_0_20px_var(--accent-glow-soft)] transition duration-300 hover:border-emerald-300 hover:shadow-[0_0_28px_var(--accent-glow)] sm:w-52"
             >
               <Image
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -76,7 +80,7 @@ export default function Home() {
               <div className="flex items-center gap-2 font-mono font-semibold text-emerald-400">
                 <span aria-hidden="true" className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+                  <span className="relative inline-flex size-2 rounded-full bg-emerald-400 shadow-[0_0_10px_var(--accent-glow)]" />
                 </span>
                 Open to Work
               </div>
