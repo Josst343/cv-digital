@@ -112,7 +112,11 @@ export default function DownloadCvButton() {
         pdfDocument.setFont("helvetica", "normal");
         pdfDocument.setFontSize(9);
         pdfDocument.setTextColor("#52525b");
-        pdfDocument.text(`${item.institution} | ${item.period}`, margin, y);
+        pdfDocument.text(
+          item.institution ? `${item.institution} | ${item.period}` : item.period,
+          margin,
+          y,
+        );
         y += 6;
         addParagraph(item.description);
       });

@@ -10,7 +10,7 @@ export default function Home() {
           {profile.name}
         </a>
         <div className="hidden gap-6 text-sm text-zinc-400 sm:flex">
-          <a className="transition-colors hover:text-white" href="#sobre-mi">Sobre mi</a>
+          <a className="transition-colors hover:text-white" href="#sobre-mi">Sobre mí</a>
           <a className="transition-colors hover:text-white" href="#trayectoria">Trayectoria</a>
           <a className="transition-colors hover:text-white" href="#educacion">Educación</a>
           <a className="transition-colors hover:text-white" href="#habilidades">Habilidades</a>
@@ -60,7 +60,7 @@ export default function Home() {
         </section>
 
         <section id="sobre-mi" className="grid gap-8 border-t border-zinc-800 py-16 md:grid-cols-[0.35fr_1fr]">
-          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">01 / Sobre mi</h2>
+          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">01 / Sobre mí</h2>
           <p className="max-w-2xl text-2xl leading-relaxed text-zinc-300">
             {profile.summary}
           </p>
@@ -98,7 +98,7 @@ export default function Home() {
               <article key={item.title} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
                 <p className="font-mono text-sm text-zinc-500">{item.period}</p>
                 <h3 className="mt-12 text-2xl font-semibold">{item.title}</h3>
-                <p className="mt-2 text-zinc-400">{item.institution}</p>
+                {item.institution && <p className="mt-2 text-zinc-400">{item.institution}</p>}
                 <p className="mt-3 leading-7 text-zinc-400">{item.description}</p>
               </article>
             ))}
