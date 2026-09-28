@@ -1,6 +1,18 @@
 import { aspirations, education, experience, profile, projects, skills } from "./data/profile";
 import DownloadCvButton from "./components/download-cv-button";
 import Image from "next/image";
+import type { CSSProperties } from "react";
+
+const technologies = [
+  { name: "Java", logo: "java.svg", color: "#F89820" },
+  { name: "Spring Boot", logo: "spring.svg", color: "#77BC1F" },
+  { name: "React", logo: "react.svg", color: "#61DAFB" },
+  { name: "Go", logo: "go.svg", color: "#00ADD8" },
+  { name: "PostgreSQL", logo: "postgresql.svg", color: "#4169E1" },
+  { name: "GraphQL", logo: "graphql.svg", color: "#E10098" },
+  { name: "Salesforce", logo: "salesforce.svg", color: "#00A1E0" },
+  { name: "Apigee", mark: "API", color: "#00A86B" },
+];
 
 export default function Home() {
   return (
@@ -23,7 +35,14 @@ export default function Home() {
       <div className="print-container mx-auto max-w-6xl">
         <section id="inicio" className="grid gap-10 py-24 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:py-36">
           <div>
-            <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-emerald-400">{profile.role}</p>
+            <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-emerald-400">
+              <span className="sr-only">Developer Sr, Full Stack, Java y React</span>
+              <span className="role-rotator" aria-hidden="true">
+                <span className="role-rotator__item">{profile.role}</span>
+                <span className="role-rotator__item">Full Stack</span>
+                <span className="role-rotator__item">Java &amp; React</span>
+              </span>
+            </p>
             <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl">
               {profile.headline}
             </h1>
@@ -31,10 +50,10 @@ export default function Home() {
               {profile.intro}
             </p>
             <div className="mt-10 flex flex-wrap gap-4 print-hidden">
-              <a className="rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-emerald-300" href="#contacto">
+              <a className="rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_0_22px_rgba(52,211,153,0.3)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#contacto">
                 Contactarme
               </a>
-              <a className="rounded-full border border-zinc-700 px-6 py-3 text-sm font-semibold transition-colors hover:border-zinc-400" href="#proyectos">
+              <a className="rounded-full border border-zinc-700 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:bg-zinc-800/80 hover:shadow-[0_0_18px_rgba(161,161,170,0.12)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#proyectos">
                 Ver proyectos
               </a>
               <DownloadCvButton />
@@ -42,10 +61,10 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-start gap-8 lg:items-end">
             <div
-              className="relative aspect-square w-44 overflow-hidden border border-emerald-400/60 sm:w-52"
+              className="group relative aspect-square w-44 overflow-hidden border border-emerald-400/60 transition duration-300 hover:border-emerald-300 hover:shadow-[0_0_28px_rgba(52,211,153,0.28)] sm:w-52"
             >
               <Image
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 src="/images/profile-photo.jpg"
                 alt="Fotografía profesional de Josue Misael Flores Fernandez"
                 fill
@@ -53,9 +72,51 @@ export default function Home() {
                 sizes="(max-width: 640px) 176px, 208px"
               />
             </div>
-            <p className="border-l border-emerald-400 pl-5 text-sm leading-7 text-zinc-500 lg:max-w-xs">
-              {profile.availability}
-            </p>
+            <div className="border-l border-emerald-400 pl-5 text-sm leading-7 lg:max-w-xs">
+              <div className="flex items-center gap-2 font-mono font-semibold text-emerald-400">
+                <span aria-hidden="true" className="relative flex size-2">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+                </span>
+                Open to Work
+              </div>
+              <p className="mt-1 text-zinc-500">{profile.availability}</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="tecnologias" aria-label="Stack tecnológico" className="border-t border-zinc-800 py-12 sm:py-14">
+          <h2 className="mb-6 font-mono text-sm uppercase tracking-widest text-emerald-400">Stack tecnológico</h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+            {technologies.map((technology) => (
+              <figure
+                key={technology.name}
+                className="technology-card group relative flex min-h-28 flex-col items-center justify-center gap-3 rounded-md border border-zinc-800 bg-zinc-900/40 px-3 py-4 text-center"
+                style={{ "--technology-color": technology.color } as CSSProperties}
+                tabIndex={0}
+                role="img"
+                aria-label={technology.name}
+                title={technology.name}
+              >
+                {technology.logo ? (
+                  <Image
+                    src={`/images/stack/${technology.logo}`}
+                    alt=""
+                    aria-hidden="true"
+                    width={40}
+                    height={40}
+                    className="size-10 object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
+                ) : (
+                  <span aria-hidden="true" className="grid size-10 place-items-center rounded-md border border-emerald-400/40 font-mono text-sm font-bold text-emerald-300">
+                    {technology.mark}
+                  </span>
+                )}
+                <figcaption aria-hidden="true" className="text-sm font-medium text-zinc-300">
+                  {technology.name}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 

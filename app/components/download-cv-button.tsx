@@ -185,7 +185,7 @@ export default function DownloadCvButton() {
   return (
     <span className="print-hidden inline-flex flex-col items-start gap-2">
       <button
-        className="rounded-full border border-emerald-400 px-6 py-3 text-sm font-semibold text-emerald-300 transition-colors hover:bg-emerald-400 hover:text-zinc-950 disabled:cursor-wait disabled:opacity-60"
+        className="rounded-full border border-emerald-400 px-6 py-3 text-sm font-semibold text-emerald-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-400 hover:text-zinc-950 hover:shadow-[0_0_22px_rgba(52,211,153,0.25)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98] disabled:cursor-wait disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
         type="button"
         onClick={handleDownload}
         disabled={isGenerating}

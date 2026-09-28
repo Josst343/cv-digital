@@ -25,6 +25,76 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.technology-card {
+  transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.technology-card:hover,
+.technology-card:focus-visible {
+  border-color: var(--technology-color);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--technology-color) 28%, transparent);
+  transform: translateY(-3px);
+}
+
+.technology-card:focus-visible {
+  outline: 2px solid var(--technology-color);
+  outline-offset: 3px;
+}
+
+.role-rotator {
+  display: inline-grid;
+  min-width: 12ch;
+}
+
+.role-rotator__item {
+  grid-area: 1 / 1;
+  opacity: 0;
+}
+
+.role-rotator__item:nth-child(1) {
+  animation: role-first 9s steps(1, end) infinite;
+}
+
+.role-rotator__item:nth-child(2) {
+  animation: role-second 9s steps(1, end) infinite;
+}
+
+.role-rotator__item:nth-child(3) {
+  animation: role-third 9s steps(1, end) infinite;
+}
+
+@keyframes role-first {
+  0%, 32% { opacity: 1; }
+  33%, 99% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes role-second {
+  0%, 32% { opacity: 0; }
+  33%, 65% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+
+@keyframes role-third {
+  0%, 65% { opacity: 0; }
+  66%, 99% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-rotator__item {
+    animation: none;
+  }
+
+  .technology-card {
+    transition: none;
+  }
+
+  .role-rotator__item:first-child {
+    opacity: 1;
+  }
+}
+
 @media print {
   @page {
     margin: 16mm 14mm;
