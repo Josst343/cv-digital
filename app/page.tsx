@@ -1,4 +1,8 @@
+"use client";
+
+import { useEffect, useSyncExternalStore } from "react";
 import { aspirations, education, experience, profile, projects, skills } from "./data/profile";
+import { englishContent, spanishUi, type Language } from "./data/locales";
 import DownloadCvButton from "./components/download-cv-button";
 import ThemeAccentSelector from "./components/theme-accent-selector";
 import Image from "next/image";
@@ -15,24 +19,88 @@ const technologies = [
   { name: "Apigee", mark: "API", color: "#00A86B" },
 ];
 
+const languageStorageKey = "cv-digital-language";
+const languageChangeEvent = "cv-digital-language-change";
+
+function subscribeToLanguageChanges(onChange: () => void) {
+  window.addEventListener("storage", onChange);
+  window.addEventListener(languageChangeEvent, onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener(languageChangeEvent, onChange);
+  };
+}
+
+function getStoredLanguage(): Language {
+  return window.localStorage.getItem(languageStorageKey) === "en" ? "en" : "es";
+}
+
+function getServerLanguage(): Language {
+  return "es";
+}
+
 export default function Home() {
+  const language = useSyncExternalStore(
+    subscribeToLanguageChanges,
+    getStoredLanguage,
+    getServerLanguage,
+  );
+  const isEnglish = language === "en";
+  const content = isEnglish ? englishContent : {
+    profile,
+    aspirations,
+    education,
+    experience,
+    projects,
+    skills,
+    ui: spanishUi,
+  };
+  const copy = content.ui;
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.title = isEnglish
+      ? "Resume - Josue Misael Flores Fernandez"
+      : "Curriculum Vitae - Josue Misael Flores Fernandez";
+    document.querySelector('meta[name="description"]')?.setAttribute(
+      "content",
+      isEnglish
+        ? "Professional profile and selected projects."
+        : "Presentación de mi perfil profesional y proyectos destacados.",
+    );
+  }, [isEnglish, language]);
+
+  function selectLanguage(selectedLanguage: Language) {
+    window.localStorage.setItem(languageStorageKey, selectedLanguage);
+    window.dispatchEvent(new Event(languageChangeEvent));
+  }
+
   return (
     <main className="min-h-screen bg-zinc-950 px-6 py-6 text-zinc-100 sm:px-10 lg:px-16">
       <nav className="mx-auto flex max-w-6xl items-center justify-between border-b border-zinc-800 pb-6">
         <a className="font-mono text-sm font-semibold tracking-widest text-emerald-400" href="#inicio">
-          {profile.name}
+          {content.profile.name}
         </a>
         <div className="flex items-center gap-4">
           <div className="hidden gap-5 text-sm text-zinc-400 lg:flex">
-            <a className="transition-colors hover:text-white" href="#sobre-mi">Sobre mí</a>
-            <a className="transition-colors hover:text-white" href="#trayectoria">Trayectoria</a>
-            <a className="transition-colors hover:text-white" href="#educacion">Educación</a>
-            <a className="transition-colors hover:text-white" href="#habilidades">Habilidades</a>
-            <a className="transition-colors hover:text-white" href="#aspiraciones">Aspiraciones</a>
-            <a className="transition-colors hover:text-white" href="#proyectos">Proyectos</a>
-            <a className="transition-colors hover:text-white" href="#contacto">Contacto</a>
+            <a className="transition-colors hover:text-white" href="#sobre-mi">{copy.navigation.about}</a>
+            <a className="transition-colors hover:text-white" href="#trayectoria">{copy.navigation.experience}</a>
+            <a className="transition-colors hover:text-white" href="#educacion">{copy.navigation.education}</a>
+            <a className="transition-colors hover:text-white" href="#habilidades">{copy.navigation.skills}</a>
+            <a className="transition-colors hover:text-white" href="#aspiraciones">{copy.navigation.aspirations}</a>
+            <a className="transition-colors hover:text-white" href="#proyectos">{copy.navigation.projects}</a>
+            <a className="transition-colors hover:text-white" href="#contacto">{copy.navigation.contact}</a>
           </div>
-          <ThemeAccentSelector />
+          <button
+            className="rounded-full border border-emerald-400 bg-transparent px-4 py-2 text-sm text-emerald-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-400 hover:text-zinc-950 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]"
+            type="button"
+            aria-label={isEnglish ? "Switch to Spanish" : "Cambiar a inglés"}
+            title={isEnglish ? "Switch to Spanish" : "Cambiar a inglés"}
+            onClick={() => selectLanguage(isEnglish ? "es" : "en")}
+          >
+            EN/ES
+          </button>
+          <ThemeAccentSelector language={language} />
         </div>
       </nav>
 
@@ -40,27 +108,27 @@ export default function Home() {
         <section id="inicio" className="grid gap-10 py-24 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:py-36">
           <div>
             <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-emerald-400">
-              <span className="sr-only">Developer Sr, Full Stack, Java y React</span>
+              <span className="sr-only">{copy.hero.roles}</span>
               <span className="role-rotator" aria-hidden="true">
-                <span className="role-rotator__item">{profile.role}</span>
+                <span className="role-rotator__item">{content.profile.role}</span>
                 <span className="role-rotator__item">Full Stack</span>
                 <span className="role-rotator__item">Java &amp; React</span>
               </span>
             </p>
             <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl">
-              {profile.headline}
+              {content.profile.headline}
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-8 text-zinc-400">
-              {profile.intro}
+              {content.profile.intro}
             </p>
             <div className="mt-10 flex flex-wrap gap-4 print-hidden">
               <a className="rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#contacto">
-                Contactarme
+                {copy.hero.contact}
               </a>
               <a className="rounded-full border border-zinc-700 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:bg-zinc-800/80 hover:shadow-[0_0_18px_rgba(161,161,170,0.12)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#proyectos">
-                Ver proyectos
+                {copy.hero.projects}
               </a>
-              <DownloadCvButton />
+              <DownloadCvButton language={language} />
             </div>
           </div>
           <div className="flex flex-col items-start gap-8 lg:items-end">
@@ -70,7 +138,7 @@ export default function Home() {
               <Image
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 src="/images/profile-photo.jpg"
-                alt="Fotografía profesional de Josue Misael Flores Fernandez"
+                alt={copy.hero.photoAlt}
                 fill
                 priority
                 sizes="(max-width: 640px) 176px, 208px"
@@ -82,15 +150,15 @@ export default function Home() {
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex size-2 rounded-full bg-emerald-400 shadow-[0_0_10px_var(--accent-glow)]" />
                 </span>
-                Open to Work
+                {copy.hero.openToWork}
               </div>
-              <p className="mt-1 text-zinc-500">{profile.availability}</p>
+              <p className="mt-1 text-zinc-500">{content.profile.availability}</p>
             </div>
           </div>
         </section>
 
-        <section id="tecnologias" aria-label="Stack tecnológico" className="border-t border-zinc-800 py-12 sm:py-14">
-          <h2 className="mb-6 font-mono text-sm uppercase tracking-widest text-emerald-400">Stack tecnológico</h2>
+        <section id="tecnologias" aria-label={copy.technologyStack} className="border-t border-zinc-800 py-12 sm:py-14">
+          <h2 className="mb-6 font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.technologyStack}</h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
             {technologies.map((technology) => (
               <figure
@@ -125,19 +193,19 @@ export default function Home() {
         </section>
 
         <section id="sobre-mi" className="grid gap-8 border-t border-zinc-800 py-16 md:grid-cols-[0.35fr_1fr]">
-          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">01 / Sobre mí</h2>
+          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.aboutHeading}</h2>
           <p className="max-w-2xl text-2xl leading-relaxed text-zinc-300">
-            {profile.summary}
+            {content.profile.summary}
           </p>
         </section>
 
         <section id="trayectoria" className="border-t border-zinc-800 py-16">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">02 / Trayectoria</h2>
-            <span className="text-sm text-zinc-500">Experiencia profesional</span>
+            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.experienceHeading}</h2>
+            <span className="text-sm text-zinc-500">{copy.experienceSubheading}</span>
           </div>
           <div className="space-y-4">
-            {experience.map((item) => (
+            {content.experience.map((item) => (
               <article key={item.role} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
                 <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
                   <div>
@@ -155,11 +223,11 @@ export default function Home() {
 
         <section id="educacion" className="border-t border-zinc-800 py-16">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">03 / Educación</h2>
-            <span className="text-sm text-zinc-500">Aprendizaje continuo</span>
+            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.educationHeading}</h2>
+            <span className="text-sm text-zinc-500">{copy.educationSubheading}</span>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {education.map((item) => (
+            {content.education.map((item) => (
               <article key={item.title} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
                 <p className="font-mono text-sm text-zinc-500">{item.period}</p>
                 <h3 className="mt-12 text-2xl font-semibold">{item.title}</h3>
@@ -172,11 +240,11 @@ export default function Home() {
 
         <section id="habilidades" className="border-t border-zinc-800 py-16">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">04 / Habilidades</h2>
-            <span className="text-sm text-zinc-500">Fortalezas profesionales</span>
+            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.skillsHeading}</h2>
+            <span className="text-sm text-zinc-500">{copy.skillsSubheading}</span>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map((skill) => (
+            {content.skills.map((skill) => (
               <article key={skill.category} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
                 <h3 className="text-lg font-semibold">{skill.category}</h3>
                 <p className="mt-3 leading-7 text-zinc-400">{skill.items}</p>
@@ -187,11 +255,11 @@ export default function Home() {
 
         <section id="aspiraciones" className="border-t border-zinc-800 py-16">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">05 / Aspiraciones</h2>
-            <span className="text-sm text-zinc-500">Próximos objetivos</span>
+            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.aspirationsHeading}</h2>
+            <span className="text-sm text-zinc-500">{copy.aspirationsSubheading}</span>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {aspirations.map((aspiration) => (
+            {content.aspirations.map((aspiration) => (
               <article key={aspiration.title} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
                 <p className="font-mono text-sm text-zinc-500">{aspiration.label}</p>
                 <h3 className="mt-12 text-2xl font-semibold">{aspiration.title}</h3>
@@ -203,11 +271,11 @@ export default function Home() {
 
         <section id="proyectos" className="border-t border-zinc-800 py-16">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">06 / Proyectos destacados</h2>
-            <span className="text-sm text-zinc-500">2024 - 2026</span>
+            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.projectsHeading}</h2>
+            <span className="text-sm text-zinc-500">{copy.projectPeriod}</span>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {projects.map((project) => (
+            {content.projects.map((project) => (
               <article key={project.name} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
                 <p className="font-mono text-sm text-zinc-500">{project.label}</p>
                 <h3 className="mt-12 text-2xl font-semibold">{project.name}</h3>
@@ -218,18 +286,18 @@ export default function Home() {
         </section>
 
         <section id="contacto" className="border-t border-zinc-800 py-16">
-          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">07 / Contacto</h2>
-          <h2 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">Hablemos de tu próximo proyecto.</h2>
-          <a className="mt-8 inline-block text-lg text-zinc-300 underline decoration-emerald-400 decoration-2 underline-offset-8 transition-colors hover:text-emerald-400" href={`mailto:${profile.email}`}>
-            {profile.email}
+          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.contactHeading}</h2>
+          <h2 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">{copy.contactHeadline}</h2>
+          <a className="mt-8 inline-block text-lg text-zinc-300 underline decoration-emerald-400 decoration-2 underline-offset-8 transition-colors hover:text-emerald-400" href={`mailto:${content.profile.email}`}>
+            {content.profile.email}
           </a>
-          <a className="mt-4 block text-lg text-zinc-300 underline decoration-emerald-400 decoration-2 underline-offset-8 transition-colors hover:text-emerald-400" href={`tel:${profile.phone}`}>
-            {profile.phone}
+          <a className="mt-4 block text-lg text-zinc-300 underline decoration-emerald-400 decoration-2 underline-offset-8 transition-colors hover:text-emerald-400" href={`tel:${content.profile.phone}`}>
+            {content.profile.phone}
           </a>
         </section>
 
         <footer className="border-t border-zinc-800 py-6 text-sm text-zinc-500">
-          © {profile.copyrightYear} {profile.name}
+          © {content.profile.copyrightYear} {content.profile.name}
         </footer>
       </div>
       </main>

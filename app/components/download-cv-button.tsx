@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { jsPDF } from "jspdf";
 import { aspirations, education, experience, profile, projects, skills } from "../data/profile";
+import { englishContent, type Language } from "../data/locales";
 
 const loadPhoto = async () => {
   const response = await fetch("/images/profile-photo.jpg");
@@ -16,9 +17,14 @@ const loadPhoto = async () => {
   });
 };
 
-export default function DownloadCvButton() {
+export default function DownloadCvButton({ language }: { language: Language }) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState("");
+  const isEnglish = language === "en";
+  const content = isEnglish ? englishContent : { aspirations, education, experience, profile, projects, skills };
+  const sectionTitles = isEnglish
+    ? { profile: "Professional Profile", experience: "Professional Experience", education: "Education", skills: "Skills", aspirations: "Goals", projects: "Selected Projects" }
+    : { profile: "Perfil profesional", experience: "Experiencia profesional", education: "Educación", skills: "Habilidades", aspirations: "Aspiraciones", projects: "Proyectos destacados" };
 
   const handleDownload = async () => {
     setIsGenerating(true);
@@ -66,25 +72,25 @@ export default function DownloadCvButton() {
       pdfDocument.setFont("helvetica", "bold");
       pdfDocument.setFontSize(23);
       pdfDocument.setTextColor("#18181b");
-      pdfDocument.text(profile.name, margin, y);
+      pdfDocument.text(content.profile.name, margin, y);
       y += 8;
       pdfDocument.setFont("helvetica", "normal");
       pdfDocument.setFontSize(12);
       pdfDocument.setTextColor("#047857");
-      pdfDocument.text(profile.role, margin, y);
+      pdfDocument.text(content.profile.role, margin, y);
       y += 6;
       pdfDocument.setFontSize(9);
       pdfDocument.setTextColor("#52525b");
-      pdfDocument.text(`${profile.email}  |  ${profile.phone}`, margin, y);
+      pdfDocument.text(`${content.profile.email}  |  ${content.profile.phone}`, margin, y);
       pdfDocument.addImage(photoDataUrl, "JPEG", 154, 12, 38, 38);
       y += 9;
 
-      addSectionTitle("Perfil profesional");
-      addParagraph(profile.intro);
-      addParagraph(profile.summary);
+      addSectionTitle(sectionTitles.profile);
+      addParagraph(content.profile.intro);
+      addParagraph(content.profile.summary);
 
-      addSectionTitle("Experiencia profesional");
-      experience.forEach((item) => {
+      addSectionTitle(sectionTitles.experience);
+      content.experience.forEach((item) => {
         ensureSpace(30);
         pdfDocument.setFont("helvetica", "bold");
         pdfDocument.setFontSize(11);
@@ -101,8 +107,8 @@ export default function DownloadCvButton() {
         addParagraph(item.description);
       });
 
-      addSectionTitle("Educación");
-      education.forEach((item) => {
+      addSectionTitle(sectionTitles.education);
+      content.education.forEach((item) => {
         ensureSpace(25);
         pdfDocument.setFont("helvetica", "bold");
         pdfDocument.setFontSize(11);
@@ -121,8 +127,8 @@ export default function DownloadCvButton() {
         addParagraph(item.description);
       });
 
-      addSectionTitle("Habilidades");
-      skills.forEach((skill) => {
+      addSectionTitle(sectionTitles.skills);
+      content.skills.forEach((skill) => {
         ensureSpace(14);
         pdfDocument.setFont("helvetica", "bold");
         pdfDocument.setFontSize(10);
@@ -136,8 +142,8 @@ export default function DownloadCvButton() {
         y += lines.length * bodyLineHeight + 2;
       });
 
-      addSectionTitle("Aspiraciones");
-      aspirations.forEach((aspiration) => {
+      addSectionTitle(sectionTitles.aspirations);
+      content.aspirations.forEach((aspiration) => {
         pdfDocument.setFont("helvetica", "bold");
         pdfDocument.setFontSize(10);
         pdfDocument.setTextColor("#18181b");
@@ -145,8 +151,8 @@ export default function DownloadCvButton() {
         addParagraph(aspiration.description);
       });
 
-      addSectionTitle("Proyectos destacados");
-      projects.forEach((project) => {
+      addSectionTitle(sectionTitles.projects);
+      content.projects.forEach((project) => {
         ensureSpace(18);
         pdfDocument.setFont("helvetica", "bold");
         pdfDocument.setFontSize(10);
@@ -161,14 +167,14 @@ export default function DownloadCvButton() {
         pdfDocument.setFont("helvetica", "normal");
         pdfDocument.setFontSize(8);
         pdfDocument.setTextColor("#71717a");
-        pdfDocument.text(`CV - ${profile.name} | ${page} / ${pageCount}`, margin, 289);
+        pdfDocument.text(`${isEnglish ? "Resume" : "CV"} - ${content.profile.name} | ${page} / ${pageCount}`, margin, 289);
       }
 
       const pdfBlob = pdfDocument.output("blob");
       const downloadUrl = URL.createObjectURL(pdfBlob);
       const downloadLink = window.document.createElement("a");
       downloadLink.href = downloadUrl;
-      downloadLink.download = "cv-josue-flores-fernandez.pdf";
+      downloadLink.download = `${isEnglish ? "resume" : "cv"}-josue-flores-fernandez.pdf`;
       window.document.body.appendChild(downloadLink);
       downloadLink.click();
       window.setTimeout(() => {
@@ -176,7 +182,7 @@ export default function DownloadCvButton() {
         URL.revokeObjectURL(downloadUrl);
       }, 1000);
     } catch {
-      setError("No se pudo generar el PDF. Intenta nuevamente.");
+      setError(isEnglish ? "Could not generate the PDF. Please try again." : "No se pudo generar el PDF. Intenta nuevamente.");
     } finally {
       setIsGenerating(false);
     }
@@ -191,7 +197,9 @@ export default function DownloadCvButton() {
         disabled={isGenerating}
         aria-busy={isGenerating}
       >
-        {isGenerating ? "Generando PDF..." : "Descargar CV en PDF"}
+        {isGenerating
+          ? isEnglish ? "Generating PDF..." : "Generando PDF..."
+          : isEnglish ? "Download resume as PDF" : "Descargar CV en PDF"}
       </button>
       {error && <span className="text-xs text-red-400">{error}</span>}
     </span>

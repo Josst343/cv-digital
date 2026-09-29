@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useSyncExternalStore } from "react";
+import type { Language } from "../data/locales";
 
 const accents = [
-  { id: "terminal", label: "Verde Terminal", color: "#34d399" },
-  { id: "react", label: "Azul React", color: "#61dafb" },
-  { id: "violet", label: "Morado", color: "#c084fc" },
+  { id: "terminal", label: { es: "Verde Terminal", en: "Terminal green" }, color: "#34d399" },
+  { id: "react", label: { es: "Azul React", en: "React blue" }, color: "#61dafb" },
+  { id: "violet", label: { es: "Morado", en: "Violet" }, color: "#c084fc" },
 ] as const;
 
 type AccentId = (typeof accents)[number]["id"];
@@ -30,7 +31,7 @@ function getServerAccent(): AccentId {
   return "terminal";
 }
 
-export default function ThemeAccentSelector() {
+export default function ThemeAccentSelector({ language }: { language: Language }) {
   const selectedAccent = useSyncExternalStore(
     subscribeToAccentChanges,
     getStoredAccent,
@@ -47,16 +48,16 @@ export default function ThemeAccentSelector() {
   };
 
   return (
-    <div className="accent-selector" role="group" aria-label="Color de acento">
+    <div className="accent-selector" role="group" aria-label={language === "es" ? "Color de acento" : "Accent color"}>
       {accents.map((accent) => (
         <button
           key={accent.id}
           className="accent-choice"
           type="button"
           style={{ "--swatch-color": accent.color } as React.CSSProperties}
-          aria-label={accent.label}
+          aria-label={accent.label[language]}
           aria-pressed={selectedAccent === accent.id}
-          title={accent.label}
+          title={accent.label[language]}
           onClick={() => selectAccent(accent)}
         >
           <span aria-hidden="true" />
