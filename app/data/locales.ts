@@ -3,48 +3,48 @@ export type Language = "es" | "en";
 export const spanishUi = {
   language: "Idioma",
   navigation: {
-    about: "Sobre mí",
-    experience: "Trayectoria",
-    education: "Educación",
+    about: "Perfil",
+    experience: "Experiencia",
+    education: "Formación",
     skills: "Habilidades",
-    aspirations: "Aspiraciones",
+    aspirations: "Aportación",
     projects: "Proyectos",
     contact: "Contacto",
   },
   hero: {
-    roles: "Developer Sr, Full Stack, Java y React",
-    contact: "Contactarme",
+    roles: "Desarrollador Backend Senior, APIs y microservicios, Java y Spring Boot",
+    contact: "Contactar",
     projects: "Ver proyectos",
     photoAlt: "Fotografía profesional de Josue Misael Flores Fernandez",
-    availability: "Disponible para nuevos proyectos y colaboraciones.",
-    openToWork: "Disponible para trabajar",
+    availability: "Abierto a oportunidades en desarrollo backend con Java y Spring Boot.",
+    openToWork: "Abierto a oportunidades",
   },
-  technologyStack: "Stack tecnológico",
-  aboutHeading: "01 / Sobre mí",
-  experienceHeading: "02 / Trayectoria",
-  experienceSubheading: "Experiencia profesional",
-  educationHeading: "03 / Educación",
-  educationSubheading: "Aprendizaje continuo",
+  technologyStack: "Tecnologías principales",
+  aboutHeading: "01 / Perfil profesional",
+  experienceHeading: "02 / Experiencia",
+  experienceSubheading: "Finanzas y retail",
+  educationHeading: "03 / Formación",
+  educationSubheading: "Ingeniería de Software",
   skillsHeading: "04 / Habilidades",
-  skillsSubheading: "Fortalezas profesionales",
-  aspirationsHeading: "05 / Aspiraciones",
-  aspirationsSubheading: "Próximos objetivos",
+  skillsSubheading: "Tecnologías y fortalezas",
+  aspirationsHeading: "05 / Cómo puedo aportar",
+  aspirationsSubheading: "Fortalezas aplicadas en proyectos",
   projectsHeading: "06 / Proyectos destacados",
-  projectPeriod: "2024 - 2026",
+  projectPeriod: "Casos de trabajo",
   contactHeading: "07 / Contacto",
-  contactHeadline: "Hablemos de tu próximo proyecto.",
+  contactHeadline: "¿Hablamos sobre cómo puedo aportar a tu equipo?",
 } ;
 
 export const englishContent = {
   profile: {
     name: "Josue Misael Flores Fernandez",
-    role: "Senior Developer",
-    headline: "Purposeful full-stack development: efficient, secure, and scalable systems.",
+    role: "Senior Backend Developer",
+    headline: "Java backend engineering for reliable, secure, high-performance services.",
     intro:
-      "Full-stack software developer with experience in the financial and retail sectors since 2020. I have 3 years of experience as a Senior Developer and specialize in backend development with Java, service architecture, security, and optimization of critical systems.",
+      "Software developer with experience in financial services and retail since 2020. I specialize in backend development with Java and Spring Boot, including APIs and microservices, performance optimization, and vulnerability remediation. I have also worked with React and JavaScript.",
     summary:
-      "I am currently a Senior Developer at Coppel, where I help develop and evolve high-demand services. I primarily work with Java and Spring Boot, and also use technologies such as Go, GraphQL, and Salesforce. I help resolve vulnerabilities, improve response times, and design software with high cohesion and loose coupling. I am proactive and always look for ways to contribute to every project I join.",
-    availability: "Available for new projects and collaborations.",
+      "I currently develop and evolve backend services at Coppel. My contributions include optimizing a Java service and reducing its response time from 3 s to 30 ms (99%), as well as addressing vulnerabilities and investigating incidents in high-demand services. I work with Java, Spring Boot, SQL, GraphQL, and JUnit.",
+    availability: "Open to backend development opportunities focused on Java and Spring Boot.",
     email: "josue5325@gmail.com",
     phone: "+52 551 603 9201",
     copyrightYear: "2026",
@@ -52,15 +52,15 @@ export const englishContent = {
   aspirations: [
     {
       label: "01",
-      title: "Specializing in artificial intelligence",
+      title: "Clear, maintainable backend services",
       description:
-        "Explore artificial intelligence, generative models, and automation to build useful, secure solutions aligned with business needs.",
+        "Develop and evolve APIs and services with Java and Spring Boot, applying high-cohesion and low-coupling principles.",
     },
     {
       label: "02",
-      title: "Deepening software architecture expertise",
+      title: "Performance and reliability",
       description:
-        "Strengthen my software architecture skills to design resilient, scalable, and sustainable distributed systems.",
+        "Optimize queries and connection pools, investigate incidents, and remediate vulnerabilities in business-critical services.",
     },
   ],
   experience: [
@@ -69,37 +69,37 @@ export const englishContent = {
       role: "Senior Developer",
       company: "Coppel",
       description:
-        "Develop and evolve services with Java, Spring Boot, Maven, JUnit, GraphQL, and APIs. Resolve vulnerabilities and optimize performance by tuning connection pools, reducing memory usage, and applying high-cohesion, low-coupling principles.",
+        "Develop and evolve services with Java, Spring Boot, GraphQL, and APIs. Address vulnerabilities, write JUnit tests, and improve performance by tuning connection pools and reducing memory usage.",
     },
     {
       period: "2020 - 2022",
       role: "Software Developer",
       company: "BBVA - Financial Terminal",
       description:
-        "Developed and maintained financial terminal solutions, working on backend services, Java, automated testing, and incident response in a demanding operational environment.",
+        "Developed and maintained backend services for a financial terminal. Worked with Java, automated testing, and incident response in a demanding operational environment.",
     },
   ],
   education: [
     {
-      period: "Professional Education",
-      title: "Software Engineering",
+      period: "Academic background",
+      title: "Software Engineering Studies",
       institution: undefined,
       description:
-        "Studies focused on software development fundamentals, system design, and building technology solutions. I continue to strengthen my knowledge of software architecture and distributed systems.",
+        "Education focused on software development fundamentals, system design, and building technology solutions. I continue to develop my knowledge of software architecture and distributed systems.",
     },
   ],
   skills: [
-    { category: "Backend", items: "Java, Spring Boot, Maven, JUnit, GraphQL, and REST APIs" },
+    { category: "Backend and tools", items: "Java, Spring Boot, REST, GraphQL, Maven, JUnit, Docker, and CI/CD" },
     {
       category: "Quality and security",
-      items: "Automated testing, vulnerability remediation, and sound design practices",
+      items: "Automated testing, vulnerability remediation, and software design principles",
     },
     {
-      category: "Performance",
-      items: "Connection pool tuning, memory usage reduction, and faster response times",
+      category: "Performance and reliability",
+      items: "SQL query and connection pool optimization, reduced memory usage, and incident analysis",
     },
     {
-      category: "Data and languages",
+      category: "Other languages and data",
       items: "PostgreSQL, MongoDB, JavaScript, Nacar, Go, C, C#, and C++",
     },
     {
@@ -109,110 +109,74 @@ export const englishContent = {
   ],
   projects: [
     {
-      label: "Project 01",
-      name: "Vulnerability Mitigation in Critical Services",
+      label: "Case 01",
+      name: "Java service performance optimization",
       description:
-        "Managed and resolved security findings in the cybs-case-manager microservice. Technologies: SonarQube, Checkmarx, and Trend Micro. Outcome: Reduced security technical debt and strengthened information protection.",
+        "Restructured SQL queries and business logic, reducing response time from 3 s to 30 ms (99%) and increasing processing capacity. Technologies: Java and SQL.",
     },
     {
-      label: "Project 02",
-      name: "Service Reengineering and Performance Optimization",
+      label: "Case 02",
+      name: "Vulnerability remediation across services",
       description:
-        "Restructured the ventafuturo service by optimizing SQL queries and business logic. Technologies: Java and SQL. Outcome: Reduced response time from 3 s to 0.03 s and increased processing capacity.",
+        "Analyzed and addressed security findings to reduce technical debt and strengthen information protection. Tools: SonarQube, Checkmarx, and Trend Micro.",
     },
     {
-      label: "Project 03",
-      name: "Motorcycle Transaction Integrity Controls",
+      label: "Case 03",
+      name: "Service modernization and containerization",
       description:
-        "Implemented cart validations and modal alerts in the mobile app and employee channel. Technologies: React, JavaScript, and REST APIs. Outcome: Prevented duplicate inventory and reduced operational errors.",
+        "Updated the platform and build system to improve environment consistency and prepare the service for horizontal scaling. Technologies: Java 17, Spring Boot, Maven, Docker, and CI/CD.",
     },
     {
-      label: "Project 04",
-      name: "Technical Assessment and Google Maps API Integration",
+      label: "Case 04",
+      name: "Incident response during peak-demand events",
       description:
-        "Evaluated feasibility and native capabilities for retrieving business hours and contact metadata. Technologies: Google Maps Platform and REST APIs. Outcome: Reduced time to market and the need for backend infrastructure.",
+        "Investigated root causes and helped mitigate critical failures during a high-demand presale, improving operational stability and reducing transaction errors. Technologies: Java, microservices, and APM tools.",
     },
     {
-      label: "Project 05",
-      name: "Asset Cleanup and Sensitive Data Protection",
+      label: "Case 05",
+      name: "Security controls for a payment API",
       description:
-        "Audited front-end security to identify and remove obsolete credentials. Technologies: JavaScript, Firebase, and American Express SDK. Outcome: Reduced the attack surface and improved code maintainability.",
+        "Configured API Gateway controls to protect transaction traffic and cardholder data. Technologies and standards: Apigee, PCI DSS, CORS, and allowlists.",
     },
     {
-      label: "Project 06",
-      name: "Address Data Tampering Mitigation",
+      label: "Case 06",
+      name: "Inventory transaction validation",
       description:
-        "Implemented cross-validation in the logistics module and controlled exception handling. Technologies: Java, Spring Boot, and REST APIs. Outcome: Detected address inconsistencies and improved delivery reliability.",
-    },
-    {
-      label: "Project 07",
-      name: "Sales Services Investigation and Diagnostics",
-      description:
-        "Analyzed the architecture of the ApartadoDesapartado and ecommercegeneraventainicial services. Technologies: microservices, profiling tools, and Java. Outcome: Identified bottlenecks and proposed scalability improvements.",
-    },
-    {
-      label: "Project 08",
-      name: "Cybersourprocessor Modernization and Containerization",
-      description:
-        "Updated the technology stack and migrated the build system. Technologies: Java 17, Spring Boot, Maven, Docker, and CI/CD. Outcome: Improved consistency across environments and prepared the system for horizontal scaling.",
-    },
-    {
-      label: "Project 09",
-      name: "Incident Management During High-Demand Events",
-      description:
-        "Performed root-cause analysis and mitigated critical failures during the iPhone presale. Technologies: APM tools, Java, and microservices. Outcome: Improved operational stability during peak demand and reduced transaction errors.",
-    },
-    {
-      label: "Project 10",
-      name: "Security Architecture for the Lost Account Project",
-      description:
-        "Implemented identity validation and protection for financial and personal data. Technologies: OAuth 2.0, JWT, TLS 1.3, and GCP Secret Manager. Outcome: Supported regulatory compliance and credit management traceability.",
-    },
-    {
-      label: "Project 11",
-      name: "PCI DSS-Compliant API Gateway Configuration",
-      description:
-        "Configured security controls at the API Gateway layer for banking transactions. Technologies: Apigee, PCI DSS, CORS, and allowlists. Outcome: Protected cardholder data traffic and integrity.",
-    },
-    {
-      label: "Project 12",
-      name: "Omnichannel Experience Optimization (Site to Store)",
-      description:
-        "Improved filtering and geolocation algorithms for assigning physical stores. Technologies: algorithms, geolocation APIs, and REST APIs. Outcome: Improved pickup location accuracy and optimized logistics routes.",
+        "Implemented cart validations and alerts in a mobile app and employee channel to prevent duplicate inventory and reduce operational errors. Technologies: React, JavaScript, and REST APIs.",
     },
   ],
   ui: {
     language: "Language",
     navigation: {
-      about: "About me",
+      about: "Profile",
       experience: "Experience",
       education: "Education",
       skills: "Skills",
-      aspirations: "Goals",
+      aspirations: "How I contribute",
       projects: "Projects",
       contact: "Contact",
     },
     hero: {
-      roles: "Senior Developer, Full Stack, Java and React",
-      contact: "Contact me",
+      roles: "Senior Backend Developer, APIs and microservices, Java and Spring Boot",
+      contact: "Get in touch",
       projects: "View projects",
       photoAlt: "Professional photo of Josue Misael Flores Fernandez",
-      availability: "Available for new projects and collaborations.",
-      openToWork: "Open to work",
+      availability: "Open to backend development opportunities focused on Java and Spring Boot.",
+      openToWork: "Open to opportunities",
     },
-    technologyStack: "Technology stack",
-    aboutHeading: "01 / About me",
+    technologyStack: "Core technologies",
+    aboutHeading: "01 / Professional profile",
     experienceHeading: "02 / Experience",
-    experienceSubheading: "Professional experience",
+    experienceSubheading: "Financial services and retail",
     educationHeading: "03 / Education",
-    educationSubheading: "Continuous learning",
+    educationSubheading: "Software Engineering",
     skillsHeading: "04 / Skills",
-    skillsSubheading: "Professional strengths",
-    aspirationsHeading: "05 / Goals",
-    aspirationsSubheading: "Next objectives",
+    skillsSubheading: "Technologies and strengths",
+    aspirationsHeading: "05 / How I can contribute",
+    aspirationsSubheading: "Strengths demonstrated in projects",
     projectsHeading: "06 / Selected projects",
-    projectPeriod: "2024 - 2026",
+    projectPeriod: "Selected case studies",
     contactHeading: "07 / Contact",
-    contactHeadline: "Let's talk about your next project.",
+    contactHeadline: "Let's talk about how I can contribute to your team.",
   },
 };

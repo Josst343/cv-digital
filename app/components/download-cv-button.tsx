@@ -23,8 +23,8 @@ export default function DownloadCvButton({ language }: { language: Language }) {
   const isEnglish = language === "en";
   const content = isEnglish ? englishContent : { aspirations, education, experience, profile, projects, skills };
   const sectionTitles = isEnglish
-    ? { profile: "Professional Profile", experience: "Professional Experience", education: "Education", skills: "Skills", aspirations: "Goals", projects: "Selected Projects" }
-    : { profile: "Perfil profesional", experience: "Experiencia profesional", education: "Educación", skills: "Habilidades", aspirations: "Aspiraciones", projects: "Proyectos destacados" };
+    ? { profile: "Professional Profile", experience: "Professional Experience", education: "Education", skills: "Skills", aspirations: "How I Can Contribute", projects: "Selected Projects" }
+    : { profile: "Perfil profesional", experience: "Experiencia profesional", education: "Formación", skills: "Habilidades", aspirations: "Cómo puedo aportar", projects: "Proyectos destacados" };
 
   const handleDownload = async () => {
     setIsGenerating(true);

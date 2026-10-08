@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Curriculum Vitae - Josue Misael Flores Fernandez",
-  description: "Presentación de mi perfil profesional y proyectos destacados.",
+  title: "Josue Flores | Desarrollador Backend Java Senior",
+  description:
+    "Desarrollador backend senior con experiencia en Java, Spring Boot, APIs, rendimiento y seguridad en los sectores financiero y retail.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

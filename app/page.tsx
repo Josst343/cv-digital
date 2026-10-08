@@ -60,13 +60,13 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = isEnglish
-      ? "Resume - Josue Misael Flores Fernandez"
-      : "Curriculum Vitae - Josue Misael Flores Fernandez";
+      ? "Josue Flores | Senior Java Backend Developer"
+      : "Josue Flores | Desarrollador Backend Java Senior";
     document.querySelector('meta[name="description"]')?.setAttribute(
       "content",
       isEnglish
-        ? "Professional profile and selected projects."
-        : "Presentación de mi perfil profesional y proyectos destacados.",
+        ? "Senior backend developer with experience in Java, Spring Boot, APIs, performance, and security across financial services and retail."
+        : "Desarrollador backend senior con experiencia en Java, Spring Boot, APIs, rendimiento y seguridad en los sectores financiero y retail.",
     );
   }, [isEnglish, language]);
 
@@ -111,8 +111,10 @@ export default function Home() {
               <span className="sr-only">{copy.hero.roles}</span>
               <span className="role-rotator" aria-hidden="true">
                 <span className="role-rotator__item">{content.profile.role}</span>
-                <span className="role-rotator__item">Full Stack</span>
-                <span className="role-rotator__item">Java &amp; React</span>
+                <span className="role-rotator__item">
+                  {isEnglish ? "APIs & Microservices" : "APIs & Microservicios"}
+                </span>
+                <span className="role-rotator__item">Java &amp; Spring Boot</span>
               </span>
             </p>
             <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl">
@@ -213,7 +215,6 @@ export default function Home() {
                     <h3 className="mt-3 text-2xl font-semibold">{item.role}</h3>
                     <p className="mt-1 text-zinc-400">{item.company}</p>
                   </div>
-                  <span className="font-mono text-sm text-emerald-400">SR</span>
                 </div>
                 <p className="mt-6 max-w-3xl leading-7 text-zinc-400">{item.description}</p>
               </article>
