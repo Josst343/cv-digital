@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useSyncExternalStore } from "react";
-import { aspirations, education, experience, profile, projects, skills } from "./data/profile";
+import { education, experience, profile, projects, skills } from "./data/profile";
 import { englishContent, spanishUi, type Language } from "./data/locales";
 import DownloadCvButton from "./components/download-cv-button";
 import ThemeAccentSelector from "./components/theme-accent-selector";
@@ -48,7 +48,6 @@ export default function Home() {
   const isEnglish = language === "en";
   const content = isEnglish ? englishContent : {
     profile,
-    aspirations,
     education,
     experience,
     projects,
@@ -60,13 +59,13 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = isEnglish
-      ? "Josue Flores | Senior Java Backend Developer"
-      : "Josue Flores | Desarrollador Backend Java Senior";
+      ? "Josue Misael Flores Fernandez | Senior Backend Developer"
+      : "Josue Misael Flores Fernandez | Desarrollador Backend Senior";
     document.querySelector('meta[name="description"]')?.setAttribute(
       "content",
       isEnglish
-        ? "Senior backend developer with experience in Java, Spring Boot, APIs, performance, and security across financial services and retail."
-        : "Desarrollador backend senior con experiencia en Java, Spring Boot, APIs, rendimiento y seguridad en los sectores financiero y retail.",
+        ? "Senior backend developer specializing in Java, Spring Boot, microservices, APIs, performance, and application security."
+        : "Desarrollador backend senior especializado en Java, Spring Boot, microservicios, APIs, rendimiento y seguridad de aplicaciones.",
     );
   }, [isEnglish, language]);
 
@@ -83,11 +82,10 @@ export default function Home() {
         </a>
         <div className="flex items-center gap-4">
           <div className="hidden gap-5 text-sm text-zinc-400 lg:flex">
-            <a className="transition-colors hover:text-white" href="#sobre-mi">{copy.navigation.about}</a>
+            <a className="transition-colors hover:text-white" href="#inicio">{copy.navigation.about}</a>
             <a className="transition-colors hover:text-white" href="#trayectoria">{copy.navigation.experience}</a>
             <a className="transition-colors hover:text-white" href="#educacion">{copy.navigation.education}</a>
             <a className="transition-colors hover:text-white" href="#habilidades">{copy.navigation.skills}</a>
-            <a className="transition-colors hover:text-white" href="#aspiraciones">{copy.navigation.aspirations}</a>
             <a className="transition-colors hover:text-white" href="#proyectos">{copy.navigation.projects}</a>
             <a className="transition-colors hover:text-white" href="#contacto">{copy.navigation.contact}</a>
           </div>
@@ -108,18 +106,23 @@ export default function Home() {
         <section id="inicio" className="grid gap-10 py-24 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:py-36">
           <div>
             <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-emerald-400">
-              <span className="sr-only">{copy.hero.roles}</span>
-              <span className="role-rotator" aria-hidden="true">
-                <span className="role-rotator__item">{content.profile.role}</span>
-                <span className="role-rotator__item">
-                  {isEnglish ? "APIs & Microservices" : "APIs & Microservicios"}
-                </span>
-                <span className="role-rotator__item">Java &amp; Spring Boot</span>
-              </span>
+              {copy.aboutHeading}
             </p>
             <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl">
-              {content.profile.headline}
+              {content.profile.name}
             </h1>
+            <p className="mt-5 font-mono text-base leading-7 text-emerald-300 sm:text-lg">
+              {content.profile.role}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-sm text-zinc-400">
+              <a className="underline decoration-zinc-600 underline-offset-4 transition-colors hover:text-emerald-300" href={`mailto:${content.profile.email}`}>
+                {content.profile.email}
+              </a>
+              <span aria-hidden="true">·</span>
+              <a className="underline decoration-zinc-600 underline-offset-4 transition-colors hover:text-emerald-300" href={`tel:${content.profile.phone.replaceAll(" ", "")}`}>
+                {content.profile.phone}
+              </a>
+            </div>
             <p className="mt-8 max-w-xl text-lg leading-8 text-zinc-400">
               {content.profile.intro}
             </p>
@@ -194,13 +197,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="sobre-mi" className="grid gap-8 border-t border-zinc-800 py-16 md:grid-cols-[0.35fr_1fr]">
-          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.aboutHeading}</h2>
-          <p className="max-w-2xl text-2xl leading-relaxed text-zinc-300">
-            {content.profile.summary}
-          </p>
-        </section>
-
         <section id="trayectoria" className="border-t border-zinc-800 py-16">
           <div className="mb-8 flex items-end justify-between gap-4">
             <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.experienceHeading}</h2>
@@ -211,29 +207,15 @@ export default function Home() {
               <article key={item.role} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
                 <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
                   <div>
-                    <p className="font-mono text-sm text-zinc-500">{item.period}</p>
-                    <h3 className="mt-3 text-2xl font-semibold">{item.role}</h3>
-                    <p className="mt-1 text-zinc-400">{item.company}</p>
+                    <h3 className="text-2xl font-semibold">{item.role} | {item.company}</h3>
+                    <p className="mt-2 font-mono text-sm text-zinc-500">{item.period}</p>
                   </div>
                 </div>
-                <p className="mt-6 max-w-3xl leading-7 text-zinc-400">{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="educacion" className="border-t border-zinc-800 py-16">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.educationHeading}</h2>
-            <span className="text-sm text-zinc-500">{copy.educationSubheading}</span>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {content.education.map((item) => (
-              <article key={item.title} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
-                <p className="font-mono text-sm text-zinc-500">{item.period}</p>
-                <h3 className="mt-12 text-2xl font-semibold">{item.title}</h3>
-                {item.institution && <p className="mt-2 text-zinc-400">{item.institution}</p>}
-                <p className="mt-3 leading-7 text-zinc-400">{item.description}</p>
+                <ul className="mt-6 max-w-3xl list-disc space-y-2 pl-5 leading-7 text-zinc-400 marker:text-emerald-400">
+                  {item.responsibilities.map((responsibility) => (
+                    <li key={responsibility}>{responsibility}</li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
@@ -254,22 +236,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="aspiraciones" className="border-t border-zinc-800 py-16">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.aspirationsHeading}</h2>
-            <span className="text-sm text-zinc-500">{copy.aspirationsSubheading}</span>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {content.aspirations.map((aspiration) => (
-              <article key={aspiration.title} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
-                <p className="font-mono text-sm text-zinc-500">{aspiration.label}</p>
-                <h3 className="mt-12 text-2xl font-semibold">{aspiration.title}</h3>
-                <p className="mt-3 leading-7 text-zinc-400">{aspiration.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section id="proyectos" className="border-t border-zinc-800 py-16">
           <div className="mb-8 flex items-end justify-between gap-4">
             <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.projectsHeading}</h2>
@@ -281,6 +247,27 @@ export default function Home() {
                 <p className="font-mono text-sm text-zinc-500">{project.label}</p>
                 <h3 className="mt-12 text-2xl font-semibold">{project.name}</h3>
                 <p className="mt-3 leading-7 text-zinc-400">{project.description}</p>
+                <p className="mt-4 text-sm leading-6 text-zinc-500">
+                  <span className="font-semibold text-zinc-300">{copy.technologies}: </span>
+                  {project.technologies}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="educacion" className="border-t border-zinc-800 py-16">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.educationHeading}</h2>
+            <span className="text-sm text-zinc-500">{copy.educationSubheading}</span>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {content.education.map((item) => (
+              <article key={item.title} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
+                <p className="font-mono text-sm text-zinc-500">{item.period}</p>
+                <h3 className="mt-6 text-2xl font-semibold">{item.title}</h3>
+                {item.institution && <p className="mt-2 text-zinc-400">{item.institution}</p>}
+                <p className="mt-3 leading-7 text-zinc-400">{item.description}</p>
               </article>
             ))}
           </div>
@@ -289,11 +276,11 @@ export default function Home() {
         <section id="contacto" className="border-t border-zinc-800 py-16">
           <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.contactHeading}</h2>
           <h2 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">{copy.contactHeadline}</h2>
-          <a className="mt-8 inline-block text-lg text-zinc-300 underline decoration-emerald-400 decoration-2 underline-offset-8 transition-colors hover:text-emerald-400" href={`mailto:${content.profile.email}`}>
-            {content.profile.email}
-          </a>
-          <a className="mt-4 block text-lg text-zinc-300 underline decoration-emerald-400 decoration-2 underline-offset-8 transition-colors hover:text-emerald-400" href={`tel:${content.profile.phone}`}>
-            {content.profile.phone}
+          <a
+            className="mt-8 inline-flex rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]"
+            href={`mailto:${content.profile.email}`}
+          >
+            {copy.contactAction}
           </a>
         </section>
 

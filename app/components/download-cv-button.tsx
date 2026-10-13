@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { jsPDF } from "jspdf";
-import { aspirations, education, experience, profile, projects, skills } from "../data/profile";
+import { education, experience, profile, projects, skills } from "../data/profile";
 import { englishContent, type Language } from "../data/locales";
 
 const loadPhoto = async () => {
@@ -21,10 +21,13 @@ export default function DownloadCvButton({ language }: { language: Language }) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState("");
   const isEnglish = language === "en";
-  const content = isEnglish ? englishContent : { aspirations, education, experience, profile, projects, skills };
+  const content = isEnglish ? englishContent : { education, experience, profile, projects, skills };
   const sectionTitles = isEnglish
-    ? { profile: "Professional Profile", experience: "Professional Experience", education: "Education", skills: "Skills", aspirations: "How I Can Contribute", projects: "Selected Projects" }
-    : { profile: "Perfil profesional", experience: "Experiencia profesional", education: "Formación", skills: "Habilidades", aspirations: "Cómo puedo aportar", projects: "Proyectos destacados" };
+    ? { profile: "Professional Profile", experience: "Professional Experience", education: "Education", skills: "Technical Skills", projects: "Selected Projects" }
+    : { profile: "Perfil profesional", experience: "Experiencia profesional", education: "Formación académica", skills: "Habilidades técnicas", projects: "Proyectos destacados" };
+  const labels = isEnglish
+    ? { technologies: "Technologies", incompleteStudies: "Incomplete university studies" }
+    : { technologies: "Tecnologías", incompleteStudies: "Estudios universitarios incompletos" };
 
   const handleDownload = async () => {
     setIsGenerating(true);
@@ -57,6 +60,17 @@ export default function DownloadCvButton({ language }: { language: Language }) {
         y += lines.length * lineHeight + 2;
       };
 
+      const addBullet = (text: string) => {
+        pdfDocument.setFont("helvetica", "normal");
+        pdfDocument.setFontSize(10);
+        pdfDocument.setTextColor("#3f3f46");
+        const lines = pdfDocument.splitTextToSize(text, contentWidth - 5);
+        ensureSpace(lines.length * bodyLineHeight + 2);
+        pdfDocument.text("-", margin, y);
+        pdfDocument.text(lines, margin + 5, y);
+        y += lines.length * bodyLineHeight + 2;
+      };
+
       const addSectionTitle = (title: string) => {
         ensureSpace(14);
         y += 4;
@@ -87,44 +101,21 @@ export default function DownloadCvButton({ language }: { language: Language }) {
 
       addSectionTitle(sectionTitles.profile);
       addParagraph(content.profile.intro);
-      addParagraph(content.profile.summary);
 
       addSectionTitle(sectionTitles.experience);
       content.experience.forEach((item) => {
-        ensureSpace(30);
+        ensureSpace(14);
         pdfDocument.setFont("helvetica", "bold");
         pdfDocument.setFontSize(11);
         pdfDocument.setTextColor("#18181b");
-        pdfDocument.text(item.role, margin, y);
+        pdfDocument.text(`${item.role} | ${item.company}`, margin, y);
+        y += 5;
         pdfDocument.setFont("helvetica", "normal");
         pdfDocument.setFontSize(9);
         pdfDocument.setTextColor("#047857");
-        pdfDocument.text(item.period, 210 - margin, y, { align: "right" });
+        pdfDocument.text(item.period, margin, y);
         y += 5;
-        pdfDocument.setTextColor("#52525b");
-        pdfDocument.text(item.company, margin, y);
-        y += 6;
-        addParagraph(item.description);
-      });
-
-      addSectionTitle(sectionTitles.education);
-      content.education.forEach((item) => {
-        ensureSpace(25);
-        pdfDocument.setFont("helvetica", "bold");
-        pdfDocument.setFontSize(11);
-        pdfDocument.setTextColor("#18181b");
-        pdfDocument.text(item.title, margin, y);
-        y += 5;
-        pdfDocument.setFont("helvetica", "normal");
-        pdfDocument.setFontSize(9);
-        pdfDocument.setTextColor("#52525b");
-        pdfDocument.text(
-          item.institution ? `${item.institution} | ${item.period}` : item.period,
-          margin,
-          y,
-        );
-        y += 6;
-        addParagraph(item.description);
+        item.responsibilities.forEach(addBullet);
       });
 
       addSectionTitle(sectionTitles.skills);
@@ -142,23 +133,31 @@ export default function DownloadCvButton({ language }: { language: Language }) {
         y += lines.length * bodyLineHeight + 2;
       });
 
-      addSectionTitle(sectionTitles.aspirations);
-      content.aspirations.forEach((aspiration) => {
-        pdfDocument.setFont("helvetica", "bold");
-        pdfDocument.setFontSize(10);
-        pdfDocument.setTextColor("#18181b");
-        addParagraph(aspiration.title, 10, "#18181b");
-        addParagraph(aspiration.description);
-      });
-
       addSectionTitle(sectionTitles.projects);
       content.projects.forEach((project) => {
-        ensureSpace(18);
+        ensureSpace(14);
         pdfDocument.setFont("helvetica", "bold");
         pdfDocument.setFontSize(10);
         pdfDocument.setTextColor("#18181b");
         addParagraph(project.name, 10, "#18181b");
         addParagraph(project.description);
+        addParagraph(`${labels.technologies}: ${project.technologies}`, 9, "#52525b");
+      });
+
+      addSectionTitle(sectionTitles.education);
+      content.education.forEach((item) => {
+        ensureSpace(25);
+        pdfDocument.setFont("helvetica", "bold");
+        pdfDocument.setFontSize(11);
+        pdfDocument.setTextColor("#18181b");
+        pdfDocument.text(item.title, margin, y);
+        y += 5;
+        pdfDocument.setFont("helvetica", "normal");
+        pdfDocument.setFontSize(9);
+        pdfDocument.setTextColor("#52525b");
+        pdfDocument.text(item.institution, margin, y);
+        y += 5;
+        addParagraph(labels.incompleteStudies, 9, "#52525b");
       });
 
       const pageCount = pdfDocument.getNumberOfPages();

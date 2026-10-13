@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Josue Flores | Desarrollador Backend Java Senior",
+  title: "Josue Misael Flores Fernandez | Desarrollador Backend Senior",
   description:
-    "Desarrollador backend senior con experiencia en Java, Spring Boot, APIs, rendimiento y seguridad en los sectores financiero y retail.",
+    "Desarrollador backend senior especializado en Java, Spring Boot, microservicios, APIs, rendimiento y seguridad de aplicaciones.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
