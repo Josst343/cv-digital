@@ -250,12 +250,15 @@ export default function DownloadCvButton({ language }: { language: Language }) {
   return (
     <span className="print-hidden inline-flex flex-col items-start gap-2">
       <button
-        className="rounded-full border border-emerald-400 px-6 py-3 text-sm font-semibold text-emerald-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-400 hover:text-zinc-950 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98] disabled:cursor-wait disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+        className="inline-flex h-12 items-center gap-2 rounded-full border border-emerald-700 bg-white px-5 text-sm font-semibold text-emerald-800 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-50 hover:shadow-[0_8px_22px_rgba(4,120,87,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 active:translate-y-0 active:scale-[0.98] disabled:cursor-wait disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
         type="button"
         onClick={handleDownload}
         disabled={isGenerating}
         aria-busy={isGenerating}
       >
+        <svg aria-hidden="true" className="size-4" fill="none" viewBox="0 0 20 20">
+          <path d="M10 2.917v9.166m0 0 3.75-3.75M10 12.083l-3.75-3.75M3.75 13.333v2.5c0 .46.373.834.833.834h10.834c.46 0 .833-.373.833-.834v-2.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" />
+        </svg>
         {isGenerating
           ? isEnglish ? "Generating PDF..." : "Generando PDF..."
           : isEnglish ? "Download resume as PDF" : "Descargar CV en PDF"}

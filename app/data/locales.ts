@@ -22,7 +22,7 @@ export const spanishUi = {
   experienceHeading: "02 / Experiencia profesional",
   experienceSubheading: "Finanzas y retail",
   skillsHeading: "03 / Habilidades técnicas",
-  skillsSubheading: "Tecnologías y fortalezas",
+  skillsSubheading: "Stack principal y tecnologías complementarias",
   projectsHeading: "04 / Proyectos destacados",
   projectPeriod: "Casos de trabajo",
   educationHeading: "05 / Formación académica",
@@ -32,17 +32,25 @@ export const spanishUi = {
   contactAction: "Escríbeme",
   period: "Periodo",
   technologies: "Tecnologías",
+  impact: "Resultado",
 };
 
 export const englishContent = {
   profile: {
     name: "JOSUE MISAEL FLORES FERNANDEZ",
-    role: "Senior Backend Developer | Java · Spring Boot · Microservices",
+    role: "Senior Backend Developer | Java 21 · Spring Boot · Microservices",
     intro:
-      "Software developer with experience since 2020 in financial services and retail, specializing in backend development with Java and Spring Boot. I currently work with Java 21 and Spring Boot 3.5.14. I have led optimization initiatives and worked on APIs, microservices, incident analysis, and vulnerability remediation. In a one-hour-before and one-hour-after comparison, Datadog recorded a decrease in maximum response time from 14.98 s to 9.60 s and average response time from 2.77 s to 2.70 s. Additional experience with GraphQL, automated testing, Docker, and CI/CD.",
-    availability: "Open to backend development opportunities focused on Java and Spring Boot.",
+      "Backend developer with experience since 2020 in financial services and retail, specializing in Java 21 and Spring Boot 3.5.14. I have led performance improvements for APIs and microservices, and worked on security and operational stability.",
+    highlights: [
+      "Java 21, Spring Boot 3.5.14, and microservices",
+      "36% lower maximum response time in comparative Datadog measurements",
+      "API optimization, vulnerability remediation, and automated testing",
+    ],
+    availability: "Open to remote or hybrid opportunities based in Mexico City.",
     email: "josue5325@gmail.com",
     phone: "+52 551 603 9201",
+    linkedin: "https://www.linkedin.com/in/josue-flores-623a681a3/",
+    github: "https://github.com/Josst343",
     copyrightYear: "2026",
   },
   experience: [
@@ -51,14 +59,14 @@ export const englishContent = {
       role: "Senior Developer",
       company: "Coppel",
       responsibilities: [
-        "Develop and evolve backend services and APIs using Java 21, Spring Boot 3.5.14, and GraphQL.",
+        "Developed and evolved backend services and APIs using Java 21, Spring Boot 3.5.14, and GraphQL.",
         "Led an optimization initiative, reviewing the connection pool, memory usage, and variable lifecycles, including when to limit variables to a method rather than keep them global.",
         "Proposed solutions to the technical lead and manager, contributed to their implementation, and presented the results to other teams.",
-        "In one-hour-before and one-hour-after measurements recorded in Datadog, maximum response time changed from 14.98 s to 9.60 s (36% lower) and average response time from 2.77 s to 2.70 s (2.5% lower).",
-        "Analyze and remediate vulnerabilities using security and code-analysis tools.",
-        "Develop and run automated tests with JUnit.",
-        "Modernize and containerize services using Java 17, Maven, and Docker.",
-        "Perform root-cause analysis and respond to incidents in services during high-demand events.",
+        "Measured and validated a decrease in maximum response time from 14.98 s to 9.60 s (36%) and average response time from 2.77 s to 2.70 s (2.5%) in Datadog.",
+        "Analyzed and remediated vulnerabilities using security and code-analysis tools.",
+        "Implemented and ran automated tests with JUnit.",
+        "Modernized and containerized services using Java 17, Maven, and Docker.",
+        "Investigated root causes and responded to incidents during high-demand events.",
       ],
     },
     {
@@ -66,10 +74,10 @@ export const englishContent = {
       role: "Software Developer",
       company: "BBVA – Financial Terminal",
       responsibilities: [
-        "Develop and maintain Java 8 backend services for the financial terminal.",
-        "Implement and run automated tests to validate software changes.",
-        "Respond to and diagnose incidents in a financial operations environment.",
-        "Evolve services with a focus on stability and operational continuity.",
+        "Developed and maintained Java 8 backend services for the financial terminal.",
+        "Implemented and ran automated tests to validate software changes.",
+        "Diagnosed and responded to incidents in a financial operations environment.",
+        "Evolved services with a focus on stability and operational continuity.",
       ],
     },
   ],
@@ -78,33 +86,51 @@ export const englishContent = {
       period: "Academic background",
       title: "Software Engineering",
       institution: "Autonomous University of Mexico City",
-      description: "Incomplete university studies.",
+      description: "University education in Software Engineering.",
     },
   ],
   skills: [
-    { category: "Languages", items: "Java, SQL, JavaScript, Go, C, C++, and C#" },
+    {
+      category: "Core Stack",
+      items: "Java 21, Spring Boot 3.5.14, microservices, PostgreSQL, Docker, and Apigee",
+      featured: true,
+    },
     {
       category: "Backend and architecture",
-      items: "Spring Boot, REST APIs, GraphQL, and microservices",
+      items: "REST APIs and GraphQL",
+      featured: false,
     },
     {
       category: "Databases",
       items: "PostgreSQL, MongoDB, and SQL query optimization",
+      featured: false,
     },
     {
       category: "Testing and quality",
       items: "JUnit, automated testing, and SonarQube",
+      featured: false,
     },
-    { category: "DevOps and tools", items: "Maven, Docker, and CI/CD" },
+    {
+      category: "API & DevOps ecosystem",
+      items: "Apigee, Maven, Docker, CI/CD, CORS, and API controls",
+      featured: false,
+    },
     {
       category: "Application security",
       items:
-        "Vulnerability remediation, Checkmarx, Trend Micro, Apigee, CORS, and API controls",
+        "Vulnerability remediation, Checkmarx, and Trend Micro",
+      featured: false,
     },
-    { category: "Additional frontend", items: "React and JavaScript" },
+    {
+      category: "Additional languages",
+      items: "SQL, JavaScript, Go, C, C++, and C#",
+      featured: false,
+    },
+    { category: "Additional frontend", items: "React and JavaScript", featured: false },
     {
       category: "Collaboration",
       items: "Experience collaborating with international teams and technical English",
+      featured: false,
     },
   ],
   projects: [
@@ -113,6 +139,7 @@ export const englishContent = {
       name: "Backend service performance optimization",
       description:
         "Led a review of the connection pool, memory usage, and variable lifecycles. In one-hour-before and one-hour-after measurements in Datadog, the observed maximum fell from 14.98 s to 9.60 s (36%) and the average from 2.77 s to 2.70 s (2.5%).",
+      impact: "36% lower maximum response time (Datadog)",
       technologies: "Java 21, Spring Boot 3.5.14, Datadog",
     },
     {
@@ -120,6 +147,7 @@ export const englishContent = {
       name: "Service modernization and containerization",
       description:
         "Updated the platform and build system to improve consistency across environments and prepare the service for horizontal scaling.",
+      impact: "Improved environment consistency and readiness for horizontal scaling",
       technologies: "Java 17, Spring Boot, Maven, Docker, CI/CD",
     },
     {
@@ -127,6 +155,7 @@ export const englishContent = {
       name: "Vulnerability remediation",
       description:
         "Analyzed and addressed security findings to reduce technical debt and strengthen information protection.",
+      impact: "Focused on reducing technical debt and strengthening information protection",
       technologies: "SonarQube, Checkmarx, Trend Micro",
     },
     {
@@ -134,6 +163,7 @@ export const englishContent = {
       name: "Incident response during high-demand events",
       description:
         "Analyzed root causes and helped mitigate critical failures during a high-demand presale, contributing to improved operational stability and fewer transaction errors.",
+      impact: "Contributed to operational stability and fewer transaction errors",
       technologies: "Java, microservices, APM tools",
     },
     {
@@ -141,6 +171,7 @@ export const englishContent = {
       name: "Security controls for a payment API",
       description:
         "Configured controls at the API Gateway layer to protect transaction traffic and cardholder data.",
+      impact: "Gateway controls to protect transactions and payment data",
       technologies: "Apigee, PCI DSS, CORS, allowlists",
     },
   ],
@@ -166,7 +197,7 @@ export const englishContent = {
     experienceHeading: "02 / Professional Experience",
     experienceSubheading: "Financial services and retail",
     skillsHeading: "03 / Technical Skills",
-    skillsSubheading: "Technologies and strengths",
+    skillsSubheading: "Core stack and complementary technologies",
     projectsHeading: "04 / Selected Projects",
     projectPeriod: "Selected case studies",
     educationHeading: "05 / Education",
@@ -176,5 +207,6 @@ export const englishContent = {
     contactAction: "Email me",
     period: "Period",
     technologies: "Technologies",
+    impact: "Outcome",
   },
 };
