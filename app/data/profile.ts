@@ -90,7 +90,7 @@ export const skills = [
 
 export const projects = [
   {
-    label: "Caso 01",
+    label: "Logro Destacado",
     name: "Optimización de rendimiento de un servicio backend",
     description:
       "Lideré la revisión del pool de conexiones, el consumo de memoria y el ciclo de vida de variables. En mediciones de una hora antes y después del cambio en Datadog, el máximo observado bajó de 14.98 s a 9.60 s (36 %) y el promedio de 2.77 s a 2.70 s (2.5 %).",
@@ -98,7 +98,7 @@ export const projects = [
     technologies: "Java 21, Spring Boot 3.5.14, Datadog",
   },
   {
-    label: "Caso 02",
+    label: "Iniciativa",
     name: "Modernización y contenerización de servicios",
     description:
       "Actualización de la plataforma y del sistema de compilación para mejorar la consistencia entre entornos y preparar el servicio para el escalamiento horizontal.",
@@ -106,7 +106,7 @@ export const projects = [
     technologies: "Java 17, Spring Boot, Maven, Docker, CI/CD",
   },
   {
-    label: "Caso 03",
+    label: "Iniciativa",
     name: "Remediación de vulnerabilidades",
     description:
       "Análisis y atención de hallazgos de seguridad para reducir deuda técnica y fortalecer la protección de la información.",
@@ -114,7 +114,7 @@ export const projects = [
     technologies: "SonarQube, Checkmarx, Trend Micro",
   },
   {
-    label: "Caso 04",
+    label: "Logro Destacado",
     name: "Atención de incidentes en eventos de alta demanda",
     description:
       "Análisis de causas raíz y apoyo en la mitigación de fallas críticas durante una preventa de alta demanda, contribuyendo a mejorar la estabilidad operativa y reducir errores transaccionales.",
@@ -122,7 +122,7 @@ export const projects = [
     technologies: "Java, microservicios, herramientas APM",
   },
   {
-    label: "Caso 05",
+    label: "Iniciativa",
     name: "Controles de seguridad para una API de pagos",
     description:
       "Configuración de controles en la capa de API Gateway para proteger el tráfico de transacciones y los datos de titulares de tarjetas.",

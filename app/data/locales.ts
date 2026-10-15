@@ -7,12 +7,12 @@ export const spanishUi = {
     experience: "Experiencia",
     education: "Formación",
     skills: "Habilidades",
-    projects: "Proyectos",
+    projects: "Logros",
     contact: "Contacto",
   },
   hero: {
     contact: "Contactar",
-    projects: "Ver proyectos",
+    projects: "Ver logros técnicos",
     photoAlt: "Fotografía profesional de Josue Misael Flores Fernandez",
     availability: "Abierto a oportunidades en desarrollo backend con Java y Spring Boot.",
     openToWork: "Abierto a oportunidades",
@@ -23,8 +23,8 @@ export const spanishUi = {
   experienceSubheading: "Finanzas y retail",
   skillsHeading: "03 / Habilidades técnicas",
   skillsSubheading: "Stack principal y tecnologías complementarias",
-  projectsHeading: "04 / Proyectos destacados",
-  projectPeriod: "Casos de trabajo",
+  projectsHeading: "04 / Logros técnicos destacados",
+  projectPeriod: "Iniciativas clave",
   educationHeading: "05 / Formación académica",
   educationSubheading: "Ingeniería de Software",
   contactHeading: "06 / Contacto",
@@ -124,7 +124,7 @@ export const englishContent = {
   ],
   projects: [
     {
-      label: "Case 01",
+      label: "Key Achievement",
       name: "Backend service performance optimization",
       description:
         "Led a review of the connection pool, memory usage, and variable lifecycles. In one-hour-before and one-hour-after measurements in Datadog, the observed maximum fell from 14.98 s to 9.60 s (36%) and the average from 2.77 s to 2.70 s (2.5%).",
@@ -132,7 +132,7 @@ export const englishContent = {
       technologies: "Java 21, Spring Boot 3.5.14, Datadog",
     },
     {
-      label: "Case 02",
+      label: "Initiative",
       name: "Service modernization and containerization",
       description:
         "Updated the platform and build system to improve consistency across environments and prepare the service for horizontal scaling.",
@@ -140,7 +140,7 @@ export const englishContent = {
       technologies: "Java 17, Spring Boot, Maven, Docker, CI/CD",
     },
     {
-      label: "Case 03",
+      label: "Initiative",
       name: "Vulnerability remediation",
       description:
         "Analyzed and addressed security findings to reduce technical debt and strengthen information protection.",
@@ -148,7 +148,7 @@ export const englishContent = {
       technologies: "SonarQube, Checkmarx, Trend Micro",
     },
     {
-      label: "Case 04",
+      label: "Key Achievement",
       name: "Incident response during high-demand events",
       description:
         "Analyzed root causes and helped mitigate critical failures during a high-demand presale, contributing to improved operational stability and fewer transaction errors.",
@@ -156,7 +156,7 @@ export const englishContent = {
       technologies: "Java, microservices, APM tools",
     },
     {
-      label: "Case 05",
+      label: "Initiative",
       name: "Security controls for a payment API",
       description:
         "Configured controls at the API Gateway layer to protect transaction traffic and cardholder data.",
@@ -171,12 +171,12 @@ export const englishContent = {
       experience: "Experience",
       education: "Education",
       skills: "Skills",
-      projects: "Projects",
+      projects: "Achievements",
       contact: "Contact",
     },
     hero: {
       contact: "Get in touch",
-      projects: "View projects",
+      projects: "View achievements",
       photoAlt: "Professional photo of Josue Misael Flores Fernandez",
       availability: "Open to backend development opportunities focused on Java and Spring Boot.",
       openToWork: "Open to opportunities",
@@ -187,8 +187,8 @@ export const englishContent = {
     experienceSubheading: "Financial services and retail",
     skillsHeading: "03 / Technical Skills",
     skillsSubheading: "Core stack and complementary technologies",
-    projectsHeading: "04 / Selected Projects",
-    projectPeriod: "Selected case studies",
+    projectsHeading: "04 / Key Technical Achievements",
+    projectPeriod: "Key initiatives",
     educationHeading: "05 / Education",
     educationSubheading: "Software Engineering",
     contactHeading: "06 / Contact",

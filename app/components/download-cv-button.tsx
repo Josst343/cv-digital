@@ -211,7 +211,12 @@ export default function DownloadCvButton({ language }: { language: Language }) {
           projectsY = 18;
         }
 
-        drawSectionHeader(isEnglish ? "PROJECTS" : "PROYECTOS", 80, projectsY, pageWidth - 90);
+        drawSectionHeader(
+          isEnglish ? "TECHNICAL ACHIEVEMENTS & INITIATIVES" : "LOGROS TÉCNICOS E INICIATIVAS",
+          80,
+          projectsY,
+          pageWidth - 90,
+        );
         let projectY = projectsY + 13;
 
         content.projects.forEach((project) => {
