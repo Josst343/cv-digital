@@ -6,7 +6,6 @@ import { englishContent, spanishUi, type Language } from "./data/locales";
 import DownloadCvButton from "./components/download-cv-button";
 import ThemeAccentSelector from "./components/theme-accent-selector";
 import Image from "next/image";
-import type { CSSProperties } from "react";
 
 const technologies = [
   { name: "Java", logo: "java.svg", color: "#F89820" },
@@ -75,219 +74,240 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-950 px-6 py-6 text-zinc-100 sm:px-10 lg:px-16">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between border-b border-zinc-800 pb-6">
-        <a className="font-mono text-sm font-semibold tracking-widest text-emerald-400" href="#inicio">
-          {content.profile.name}
-        </a>
-        <div className="flex items-center gap-4">
-          <div className="hidden gap-5 text-sm text-zinc-400 lg:flex">
-            <a className="transition-colors hover:text-white" href="#inicio">{copy.navigation.about}</a>
-            <a className="transition-colors hover:text-white" href="#trayectoria">{copy.navigation.experience}</a>
-            <a className="transition-colors hover:text-white" href="#educacion">{copy.navigation.education}</a>
-            <a className="transition-colors hover:text-white" href="#habilidades">{copy.navigation.skills}</a>
-            <a className="transition-colors hover:text-white" href="#proyectos">{copy.navigation.projects}</a>
-            <a className="transition-colors hover:text-white" href="#contacto">{copy.navigation.contact}</a>
-          </div>
-          <button
-            className="rounded-full border border-emerald-400 bg-transparent px-4 py-2 text-sm text-emerald-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-400 hover:text-zinc-950 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]"
-            type="button"
-            aria-label={isEnglish ? "Switch to Spanish" : "Cambiar a inglés"}
-            title={isEnglish ? "Switch to Spanish" : "Cambiar a inglés"}
-            onClick={() => selectLanguage(isEnglish ? "es" : "en")}
-          >
-            EN/ES
-          </button>
-          <ThemeAccentSelector language={language} />
-        </div>
-      </nav>
+    <main className="min-h-screen bg-[#f5f3ee] px-4 py-6 text-zinc-900 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <nav className="mb-6 flex items-center justify-between rounded-full border border-zinc-200 bg-white/80 px-4 py-3 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-xl">
+          <a className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-900" href="#inicio">
+            {content.profile.name}
+          </a>
 
-      <div className="print-container mx-auto max-w-6xl">
-        <section id="inicio" className="grid gap-10 py-24 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:py-36">
-          <div>
-            <p className="mb-6 font-mono text-sm uppercase tracking-[0.25em] text-emerald-400">
-              {copy.aboutHeading}
-            </p>
-            <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl">
+          <div className="flex items-center gap-3">
+            <div className="hidden items-center gap-5 text-sm text-zinc-600 lg:flex">
+              <a className="transition-colors hover:text-zinc-900" href="#inicio">{copy.navigation.about}</a>
+              <a className="transition-colors hover:text-zinc-900" href="#trayectoria">{copy.navigation.experience}</a>
+              <a className="transition-colors hover:text-zinc-900" href="#habilidades">{copy.navigation.skills}</a>
+              <a className="transition-colors hover:text-zinc-900" href="#proyectos">{copy.navigation.projects}</a>
+              <a className="transition-colors hover:text-zinc-900" href="#contacto">{copy.navigation.contact}</a>
+            </div>
+
+            <button
+              className="rounded-full border border-zinc-300 bg-white px-3 py-2 text-[11px] font-medium text-zinc-700 transition hover:-translate-y-0.5 hover:border-zinc-400 hover:text-zinc-950"
+              type="button"
+              aria-label={isEnglish ? "Switch to Spanish" : "Cambiar a inglés"}
+              title={isEnglish ? "Switch to Spanish" : "Cambiar a inglés"}
+              onClick={() => selectLanguage(isEnglish ? "es" : "en")}
+            >
+              EN/ES
+            </button>
+
+            <ThemeAccentSelector language={language} />
+          </div>
+        </nav>
+
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <section
+            id="inicio"
+            className="rounded-[30px] border border-zinc-200 bg-white/90 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)] xl:col-span-2 xl:p-8"
+          >
+            <div className="mb-5 flex items-center justify-between gap-3">
+              <span className="rounded-full border border-zinc-200 bg-[#f3f1ee] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-700">
+                {copy.aboutHeading}
+              </span>
+              <span className="hidden text-[11px] text-zinc-500 sm:inline">{copy.hero.openToWork}</span>
+            </div>
+
+            <h1 className="max-w-3xl text-4xl font-semibold tracking-[-0.06em] text-zinc-900 sm:text-5xl xl:text-[4.2rem]">
               {content.profile.name}
             </h1>
-            <p className="mt-5 font-mono text-base leading-7 text-emerald-300 sm:text-lg">
+
+            <p className="mt-4 max-w-2xl font-mono text-sm text-emerald-700 sm:text-base">
               {content.profile.role}
             </p>
-            <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-sm text-zinc-400">
-              <a className="underline decoration-zinc-600 underline-offset-4 transition-colors hover:text-emerald-300" href={`mailto:${content.profile.email}`}>
+
+            <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-600">
+              {content.profile.intro}
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-zinc-700">
+              <a className="rounded-full border border-zinc-200 bg-[#f7f5f3] px-4 py-2 transition hover:border-zinc-300 hover:bg-white" href={`mailto:${content.profile.email}`}>
                 {content.profile.email}
               </a>
-              <span aria-hidden="true">·</span>
-              <a className="underline decoration-zinc-600 underline-offset-4 transition-colors hover:text-emerald-300" href={`tel:${content.profile.phone.replaceAll(" ", "")}`}>
+              <a className="rounded-full border border-zinc-200 bg-[#f7f5f3] px-4 py-2 transition hover:border-zinc-300 hover:bg-white" href={`tel:${content.profile.phone.replaceAll(" ", "")}`}>
                 {content.profile.phone}
               </a>
             </div>
-            <p className="mt-8 max-w-xl text-lg leading-8 text-zinc-400">
-              {content.profile.intro}
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4 print-hidden">
-              <a className="rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#contacto">
+
+            <div className="mt-8 flex flex-wrap gap-3 print-hidden">
+              <a className="rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-zinc-800" href="#contacto">
                 {copy.hero.contact}
               </a>
-              <a className="rounded-full border border-zinc-700 px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:bg-zinc-800/80 hover:shadow-[0_0_18px_rgba(161,161,170,0.12)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]" href="#proyectos">
+              <a className="rounded-full border border-zinc-200 bg-[#f7f5f3] px-5 py-3 text-sm font-semibold text-zinc-700 transition hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-white" href="#proyectos">
                 {copy.hero.projects}
               </a>
               <DownloadCvButton language={language} />
             </div>
-          </div>
-          <div className="flex flex-col items-start gap-8 lg:items-end">
-            <div
-              className="group relative aspect-square w-44 overflow-hidden rounded-xl border border-emerald-400/60 shadow-[0_0_20px_var(--accent-glow-soft)] transition duration-300 hover:border-emerald-300 hover:shadow-[0_0_28px_var(--accent-glow)] sm:w-52"
-            >
+          </section>
+
+          <aside className="rounded-[30px] border border-zinc-200 bg-[#f3e5df] p-4 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+            <div className="relative h-52 overflow-hidden rounded-3xl border border-zinc-300/70 bg-zinc-200">
               <Image
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover"
                 src="/images/profile-photo.jpg"
                 alt={copy.hero.photoAlt}
                 fill
                 priority
-                sizes="(max-width: 640px) 176px, 208px"
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
             </div>
-            <div className="border-l border-emerald-400 pl-5 text-sm leading-7 lg:max-w-xs">
-              <div className="flex items-center gap-2 font-mono font-semibold text-emerald-400">
-                <span aria-hidden="true" className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-400 shadow-[0_0_10px_var(--accent-glow)]" />
-                </span>
-                {copy.hero.openToWork}
-              </div>
-              <p className="mt-1 text-zinc-500">{content.profile.availability}</p>
+            <div className="mt-4 flex items-center gap-2 text-sm font-medium text-zinc-800">
+              <span className="relative inline-flex size-2.5 rounded-full bg-emerald-500">
+                <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500/75" />
+              </span>
+              {copy.hero.openToWork}
+            </div>
+            <p className="mt-2 text-sm leading-6 text-zinc-700">{content.profile.availability}</p>
+          </aside>
+
+          <div className="rounded-[30px] border border-zinc-200 bg-white/90 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.05)]">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">{isEnglish ? "Impact" : "Impacto"}</p>
+            <p className="mt-6 text-5xl font-semibold tracking-[-0.07em] text-zinc-900">36%</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-600">
+              {isEnglish
+                ? "Latency reduction in API response time after optimization."
+                : "Reducción de latencia en el tiempo de respuesta de APIs tras la optimización."}
+            </p>
+          </div>
+
+          <div className="rounded-[30px] border border-zinc-200 bg-[#f0f2f4] p-5 shadow-[0_20px_60px_rgba(15,23,42,0.05)] xl:col-span-1">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">{isEnglish ? "Location" : "Ubicación"}</p>
+            <p className="mt-6 text-2xl font-semibold text-zinc-900">CDMX</p>
+            <p className="mt-2 text-sm text-zinc-600">{isEnglish ? "Mexico City" : "Ciudad de México"}</p>
+            <div className="mt-6 border-t border-zinc-200 pt-4">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">{isEnglish ? "Availability" : "Disponibilidad"}</p>
+              <p className="mt-2 text-sm text-emerald-700">{isEnglish ? "Open to remote / hybrid roles" : "Abierto a roles remotos / híbridos"}</p>
             </div>
           </div>
-        </section>
 
-        <section id="tecnologias" aria-label={copy.technologyStack} className="border-t border-zinc-800 py-12 sm:py-14">
-          <h2 className="mb-6 font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.technologyStack}</h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
-            {technologies.map((technology) => (
-              <figure
-                key={technology.name}
-                className="technology-card group relative flex min-h-28 flex-col items-center justify-center gap-3 rounded-md border border-zinc-800 bg-zinc-900/40 px-3 py-4 text-center"
-                style={{ "--technology-color": technology.color } as CSSProperties}
-                tabIndex={0}
-                role="img"
-                aria-label={technology.name}
-                title={technology.name}
-              >
-                {technology.logo ? (
-                  <Image
-                    src={`/images/stack/${technology.logo}`}
-                    alt=""
-                    aria-hidden="true"
-                    width={40}
-                    height={40}
-                    className="size-10 object-contain transition-transform duration-300 group-hover:scale-110"
-                  />
-                ) : (
-                  <span aria-hidden="true" className="grid size-10 place-items-center rounded-md border border-emerald-400/40 font-mono text-sm font-bold text-emerald-300">
-                    {technology.mark}
-                  </span>
-                )}
-                <figcaption aria-hidden="true" className="text-sm font-medium text-zinc-300">
+          <section className="rounded-[30px] border border-zinc-200 bg-[#f4ede8] p-5 text-zinc-800 shadow-[0_20px_60px_rgba(15,23,42,0.06)] xl:col-span-2">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-600">{copy.technologyStack}</p>
+              <span className="rounded-full border border-zinc-300 bg-white/60 px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] text-zinc-700">
+                {isEnglish ? "Core stack" : "Stack principal"}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {technologies.map((technology) => (
+                <span
+                  key={technology.name}
+                  className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white/70 px-3 py-2 text-sm font-medium text-zinc-800"
+                  style={{ boxShadow: `inset 0 0 0 1px ${technology.color}20` }}
+                >
+                  {technology.logo ? (
+                    <Image src={`/images/stack/${technology.logo}`} alt="" aria-hidden="true" width={18} height={18} />
+                  ) : (
+                    <span className="grid size-4 place-items-center rounded-full bg-zinc-800 text-[9px] font-bold text-white">{technology.mark}</span>
+                  )}
                   {technology.name}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
+                </span>
+              ))}
+            </div>
+          </section>
 
-        <section id="trayectoria" className="border-t border-zinc-800 py-16">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.experienceHeading}</h2>
-            <span className="text-sm text-zinc-500">{copy.experienceSubheading}</span>
+          <div className="rounded-[30px] border border-zinc-200 bg-white/90 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.05)]">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">{isEnglish ? "Recent win" : "Logro reciente"}</p>
+            <p className="mt-6 text-3xl font-semibold tracking-tighter text-zinc-900">14.98s → 9.60s</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-600">
+              {isEnglish
+                ? "Maximum API response time improvement measured in Datadog."
+                : "Mejora del tiempo máximo de respuesta de la API medida en Datadog."}
+            </p>
           </div>
-          <div className="space-y-4">
-            {content.experience.map((item) => (
-              <article key={item.role} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
-                <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
-                  <div>
-                    <h3 className="text-2xl font-semibold">{item.role} | {item.company}</h3>
-                    <p className="mt-2 font-mono text-sm text-zinc-500">{item.period}</p>
+
+          <section id="trayectoria" className="rounded-[30px] border border-zinc-200 bg-white/90 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.05)] xl:col-span-2">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-700">{copy.experienceHeading}</h2>
+              <span className="text-xs text-zinc-500">{copy.experienceSubheading}</span>
+            </div>
+            <div className="space-y-4">
+              {content.experience.map((item) => (
+                <article key={item.role} className="rounded-2xl border border-zinc-200 bg-[#f9f8f7] p-4">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <h3 className="text-xl font-semibold text-zinc-900">{item.role} | {item.company}</h3>
+                      <p className="mt-1 font-mono text-[11px] text-zinc-500">{item.period}</p>
+                    </div>
                   </div>
+                  <ul className="mt-4 space-y-2 pl-4 text-sm leading-6 text-zinc-600 marker:text-emerald-700">
+                    {item.responsibilities.slice(0, 4).map((responsibility) => (
+                      <li key={responsibility} className="list-disc">{responsibility}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <aside id="contacto" className="rounded-[30px] border border-zinc-200 bg-[#f3dddd] p-5 text-zinc-900 shadow-[0_20px_60px_rgba(15,23,42,0.05)]">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-700">{copy.contactHeading}</p>
+            <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">{copy.contactHeadline}</h3>
+            <div className="mt-6 space-y-3 text-sm text-zinc-700">
+              <a className="block hover:text-zinc-900" href={`mailto:${content.profile.email}`}>{content.profile.email}</a>
+              <a className="block hover:text-zinc-900" href={`tel:${content.profile.phone.replaceAll(" ", "")}`}>{content.profile.phone}</a>
+            </div>
+            <a className="mt-6 inline-flex rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-800" href={`mailto:${content.profile.email}`}>
+              {copy.contactAction}
+            </a>
+          </aside>
+
+          <section id="habilidades" className="rounded-[30px] border border-zinc-200 bg-white/90 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.05)] xl:col-span-2">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-700">{copy.skillsHeading}</h2>
+              <span className="text-xs text-zinc-500">{copy.skillsSubheading}</span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {content.skills.map((skill) => (
+                <article key={skill.category} className="rounded-2xl border border-zinc-200 bg-[#f9f8f7] p-4">
+                  <h3 className="text-lg font-semibold text-zinc-900">{skill.category}</h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-600">{skill.items}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="proyectos" className="rounded-[30px] border border-zinc-200 bg-white/90 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.05)] xl:col-span-2">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-700">{copy.projectsHeading}</h2>
+              <span className="text-xs text-zinc-500">{copy.projectPeriod}</span>
+            </div>
+            <div className="space-y-3">
+              {content.projects.map((project) => (
+                <article key={project.name} className="rounded-2xl border border-zinc-200 bg-[#f9f8f7] p-4">
+                  <div className="mb-2 flex items-center justify-between gap-3">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">{project.label}</p>
+                    <span className="text-xs text-zinc-500">{project.technologies}</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-zinc-900">{project.name}</h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-600">{project.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="educacion" className="rounded-[30px] border border-zinc-200 bg-[#f3e5df] p-5 text-zinc-900 shadow-[0_20px_60px_rgba(15,23,42,0.06)] xl:col-span-1">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-700">{copy.educationHeading}</p>
+            <div className="mt-5 space-y-3">
+              {content.education.map((item) => (
+                <div key={item.title}>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-700">{item.period}</p>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-tighter">{item.title}</h3>
+                  <p className="mt-2 text-sm text-zinc-700">{item.institution}</p>
+                  <p className="mt-2 text-sm text-zinc-700/80">{item.description}</p>
                 </div>
-                <ul className="mt-6 max-w-3xl list-disc space-y-2 pl-5 leading-7 text-zinc-400 marker:text-emerald-400">
-                  {item.responsibilities.map((responsibility) => (
-                    <li key={responsibility}>{responsibility}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="habilidades" className="border-t border-zinc-800 py-16">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.skillsHeading}</h2>
-            <span className="text-sm text-zinc-500">{copy.skillsSubheading}</span>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {content.skills.map((skill) => (
-              <article key={skill.category} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
-                <h3 className="text-lg font-semibold">{skill.category}</h3>
-                <p className="mt-3 leading-7 text-zinc-400">{skill.items}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="proyectos" className="border-t border-zinc-800 py-16">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.projectsHeading}</h2>
-            <span className="text-sm text-zinc-500">{copy.projectPeriod}</span>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {content.projects.map((project) => (
-              <article key={project.name} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
-                <p className="font-mono text-sm text-zinc-500">{project.label}</p>
-                <h3 className="mt-12 text-2xl font-semibold">{project.name}</h3>
-                <p className="mt-3 leading-7 text-zinc-400">{project.description}</p>
-                <p className="mt-4 text-sm leading-6 text-zinc-500">
-                  <span className="font-semibold text-zinc-300">{copy.technologies}: </span>
-                  {project.technologies}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="educacion" className="border-t border-zinc-800 py-16">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.educationHeading}</h2>
-            <span className="text-sm text-zinc-500">{copy.educationSubheading}</span>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {content.education.map((item) => (
-              <article key={item.title} className="border border-zinc-800 p-6 transition-colors hover:border-emerald-400">
-                <p className="font-mono text-sm text-zinc-500">{item.period}</p>
-                <h3 className="mt-6 text-2xl font-semibold">{item.title}</h3>
-                {item.institution && <p className="mt-2 text-zinc-400">{item.institution}</p>}
-                <p className="mt-3 leading-7 text-zinc-400">{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="contacto" className="border-t border-zinc-800 py-16">
-          <h2 className="font-mono text-sm uppercase tracking-widest text-emerald-400">{copy.contactHeading}</h2>
-          <h2 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">{copy.contactHeadline}</h2>
-          <a
-            className="mt-8 inline-flex rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-zinc-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-[0_0_22px_var(--accent-glow)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 active:translate-y-0 active:scale-[0.98]"
-            href={`mailto:${content.profile.email}`}
-          >
-            {copy.contactAction}
-          </a>
-        </section>
-
-        <footer className="border-t border-zinc-800 py-6 text-sm text-zinc-500">
-          © {content.profile.copyrightYear} {content.profile.name}
-        </footer>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
-      </main>
+    </main>
   );
 }

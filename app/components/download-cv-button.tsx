@@ -177,43 +177,18 @@ export default function DownloadCvButton({ language }: { language: Language }) {
       const timelineX = 83.5;
       const experienceTextX = 90;
       const experienceTextWidth = pageWidth - experienceTextX - 10;
-      const experienceBullets = isEnglish
-        ? [
-            [
-              "Build backend services and APIs with Java 21, Spring Boot 3.5.14, and GraphQL.",
-              "Led service optimization; maximum response time fell from 14.98 s to 9.60 s (36%) in Datadog.",
-              "Automated testing with JUnit, vulnerability remediation, and high-demand incident response.",
-              "Modernized and containerized services with Java 17, Maven, and Docker.",
-            ],
-            [
-              "Developed and maintained Java 8 backend services for the financial terminal.",
-              "Automated testing, incident diagnosis, and operational continuity.",
-            ],
-          ]
-        : [
-            [
-              "Desarrollo de servicios backend y APIs con Java 21, Spring Boot 3.5.14 y GraphQL.",
-              "Lideré la optimización de servicios: la respuesta máxima bajó de 14.98 s a 9.60 s (36 %) en Datadog.",
-              "Pruebas automatizadas con JUnit, remediación de vulnerabilidades y atención de incidentes en alta demanda.",
-              "Modernización y contenerización de servicios con Java 17, Maven y Docker.",
-            ],
-            [
-              "Desarrollo y mantenimiento de servicios backend en Java 8 para el terminal financiero.",
-              "Pruebas automatizadas, diagnóstico de incidencias y continuidad operativa.",
-            ],
-          ];
       let experienceY = 93;
       pdfDocument.setDrawColor(colors.accent);
       pdfDocument.setLineWidth(0.35);
       pdfDocument.line(timelineX, experienceY, timelineX, 260);
 
-      content.experience.forEach((item, index) => {
+      content.experience.forEach((item) => {
         pdfDocument.setFillColor(colors.accent);
         pdfDocument.circle(timelineX, experienceY, 1.1, "F");
         experienceY = drawMainText(item.period, experienceTextX, experienceY + 1, experienceTextWidth, 7.4, colors.muted);
         experienceY = drawMainText(`${item.role} | ${item.company}`, experienceTextX, experienceY + 1.2, experienceTextWidth, 9.4, colors.text, true, 4.4) + 1.5;
 
-        experienceBullets[index]?.forEach((bullet) => {
+        item.responsibilities.forEach((bullet) => {
           pdfDocument.setFillColor(colors.accent);
           pdfDocument.circle(experienceTextX + 0.6, experienceY - 1, 0.45, "F");
           experienceY = drawMainText(
@@ -229,6 +204,29 @@ export default function DownloadCvButton({ language }: { language: Language }) {
         });
         experienceY += 5;
       });
+
+      if (content.projects.length > 0) {
+        let projectsY = experienceY + 10;
+        if (projectsY > 185) {
+          pdfDocument.addPage();
+          projectsY = 18;
+        }
+
+        drawSectionHeader(isEnglish ? "PROJECTS" : "PROYECTOS", 80, projectsY, pageWidth - 90);
+        let projectY = projectsY + 13;
+
+        content.projects.forEach((project) => {
+          if (projectY > 250) {
+            pdfDocument.addPage();
+            projectY = 18;
+          }
+
+          projectY = drawMainText(`${project.label} • ${project.name}`, mainX, projectY, mainWidth, 8.8, colors.text, true, 4.2);
+          projectY = drawMainText(project.description, mainX, projectY + 2, mainWidth, 7, colors.muted, false, 3.2);
+          projectY = drawMainText(`${isEnglish ? "Technologies" : "Tecnologías"}: ${project.technologies}`, mainX, projectY + 2, mainWidth, 6.8, colors.accent, true, 3.1);
+          projectY += 6;
+        });
+      }
 
       const pdfBlob = pdfDocument.output("blob");
       const downloadUrl = URL.createObjectURL(pdfBlob);
