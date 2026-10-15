@@ -276,9 +276,24 @@ export default function Home() {
                     </div>
                   </div>
                   <ul className="mt-4 space-y-2 pl-4 text-sm leading-6 text-zinc-600 marker:text-emerald-700">
-                    {item.responsibilities.slice(0, 4).map((responsibility) => (
-                      <li key={responsibility} className="list-disc">{responsibility}</li>
-                    ))}
+                    {item.responsibilities.map((responsibility) => {
+                      const colonIndex = responsibility.indexOf(":");
+                      const hasLeadLabel = colonIndex > 0 && colonIndex < 48;
+                      return (
+                        <li key={responsibility} className="list-disc">
+                          {hasLeadLabel ? (
+                            <>
+                              <strong className="font-semibold text-zinc-800">
+                                {responsibility.slice(0, colonIndex + 1)}
+                              </strong>
+                              {responsibility.slice(colonIndex + 1)}
+                            </>
+                          ) : (
+                            responsibility
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </article>
               ))}

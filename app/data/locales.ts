@@ -38,13 +38,13 @@ export const spanishUi = {
 export const englishContent = {
   profile: {
     name: "JOSUE MISAEL FLORES FERNANDEZ",
-    role: "Senior Backend Developer | Java 21 · Spring Boot · Microservices",
+    role: "Senior Java Backend / Full Stack Developer | Java · Spring Boot · APX / ASO · Microservices",
     intro:
-      "Backend developer with experience since 2020 in financial services and retail, specializing in Java 21 and Spring Boot 3.5.14. I have led performance improvements for APIs and microservices, and worked on security and operational stability.",
+      "Senior Java Backend / Full Stack Developer with 6+ years of experience designing, developing, and optimizing enterprise applications and mission-critical microservices. Strong background in the banking sector (2 years at BBVA – Terminal Financiero working with APX and ASO architectures) and retail (Coppel), mastering the Java ecosystem (Spring Boot, Spring Core, Spring MVC, JPA, Spring Batch), relational and NoSQL databases (PostgreSQL, MongoDB), and API security with GCP and Apigee. Specialist in software engineering best practices, design patterns, functional programming, concurrency, and unit testing with JUnit and Mockito.",
     highlights: [
-      "Java 21, Spring Boot 3.5.14, and microservices",
-      "36% lower maximum response time in comparative Datadog measurements",
-      "API optimization, vulnerability remediation, and automated testing",
+      "2 years at BBVA (Terminal Financiero) with APX architecture, ASO services, and NACAR integration",
+      "Java (OOP, Streams, Lambdas, Concurrency), Spring Boot, Spring Core, Spring MVC, Spring Data JPA, and Spring Batch",
+      "36% lower maximum response time in critical APIs (measured in Datadog) and code coverage with JUnit and Mockito",
     ],
     availability: "Open to remote or hybrid opportunities based in Mexico City.",
     email: "josue5325@gmail.com",
@@ -70,14 +70,15 @@ export const englishContent = {
       ],
     },
     {
-      period: "2020 – 2022",
-      role: "Software Developer",
-      company: "BBVA – Financial Terminal",
+      period: "2020 – 2022 (2 years)",
+      role: "Java Backend Developer",
+      company: "BBVA (Project: Terminal Financiero)",
       responsibilities: [
-        "Developed and maintained Java 8 backend services for the financial terminal.",
-        "Implemented and ran automated tests to validate software changes.",
-        "Diagnosed and responded to incidents in a financial operations environment.",
-        "Evolved services with a focus on stability and operational continuity.",
+        "Backend Development in Terminal Financiero: Participated for 2 years in the development, evolutionary maintenance, and stabilization of transactional backend services for the branch Financial Terminal system, ensuring high availability and operational resilience.",
+        "APX Architecture & ASO Services: Designed, built, and integrated transactions, libraries, and RESTful APIs under the APX architecture (Extended Platform Architecture, based on Java and Spring Framework) and exposed/consumed ASO services (Service-Oriented Architecture).",
+        "Code Quality & Unit Testing: Implemented business logic applying Object-Oriented Programming (OOP), Collections, Streams, Lambdas, dependency injection, and robust exception handling, ensuring code coverage with JUnit and Mockito.",
+        "Legacy Integration & Persistence: Interconnected modern components with core banking systems (NACAR / COBOL) and managed data persistence using JPA and relational databases.",
+        "Incident Response & Deployments: Resolved critical incidents in production environments, validated software changes, and managed build and versioning lifecycles with Maven and Git under Agile methodologies.",
       ],
     },
   ],
@@ -91,45 +92,33 @@ export const englishContent = {
   ],
   skills: [
     {
-      category: "Core Stack",
-      items: "Java 21, Spring Boot 3.5.14, microservices, PostgreSQL, Docker, and Apigee",
+      category: "Languages & Core",
+      items: "Java (OOP, Generics, Collections, Streams, Lambdas, Optional, Concurrency / ExecutorService), TypeScript, JavaScript, Go, SQL.",
       featured: true,
     },
     {
-      category: "Backend and architecture",
-      items: "REST APIs and GraphQL",
+      category: "Frameworks & Architecture",
+      items: "Spring Boot, Spring Core, Spring MVC, Spring Data JPA, Spring Batch, Node.js.",
       featured: false,
+    },
+    {
+      category: "Banking Ecosystem (BBVA)",
+      items: "APX (Arquitectura Plataforma Extendida), ASO (Arquitectura de Servicios Orientada), NACAR, Terminal Financiero.",
+      featured: true,
     },
     {
       category: "Databases",
-      items: "PostgreSQL, MongoDB, and SQL query optimization",
+      items: "PostgreSQL, SQL, MongoDB, JPA / Hibernate.",
       featured: false,
     },
     {
-      category: "Testing and quality",
-      items: "JUnit, automated testing, and SonarQube",
+      category: "Testing & Quality",
+      items: "JUnit, Mockito, Component Testing.",
       featured: false,
     },
     {
-      category: "API & DevOps ecosystem",
-      items: "Apigee, Maven, Docker, CI/CD, CORS, and API controls",
-      featured: false,
-    },
-    {
-      category: "Application security",
-      items:
-        "Vulnerability remediation, Checkmarx, and Trend Micro",
-      featured: false,
-    },
-    {
-      category: "Additional languages",
-      items: "SQL, JavaScript, Go, C, C++, and C#",
-      featured: false,
-    },
-    { category: "Additional frontend", items: "React and JavaScript", featured: false },
-    {
-      category: "Collaboration",
-      items: "Experience collaborating with international teams and technical English",
+      category: "Cloud, APIs & Tools",
+      items: "RESTful APIs, SOAP, Google Cloud Platform (GCP), Apigee API Gateway, Docker, Liquibase, Maven, Git.",
       featured: false,
     },
   ],

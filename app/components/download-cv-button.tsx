@@ -143,14 +143,11 @@ export default function DownloadCvButton({ language }: { language: Language }) {
       };
 
       pdfDocument.setFont("helvetica", "bold");
-      pdfDocument.setFontSize(19);
+      pdfDocument.setFontSize(18);
       pdfDocument.setTextColor(colors.text);
-      pdfDocument.text(titleCaseName, mainX, 22);
-      drawMainText(content.profile.role, mainX, 32, mainWidth, 9.2, colors.accent, false, 4.2);
-      const intro = isEnglish
-        ? "Backend developer with experience in financial services and retail since 2020. Specializes in Java, Spring Boot, APIs, and microservices, with a focus on optimization, automated testing, and application security."
-        : "Desarrollador backend con experiencia en finanzas y retail desde 2020. Especializado en Java, Spring Boot, APIs y microservicios, con enfoque en optimización, pruebas automatizadas y seguridad de aplicaciones.";
-      drawMainText(intro, mainX, 43, mainWidth, 7.7, colors.muted, false, 3.5);
+      pdfDocument.text(titleCaseName, mainX, 17);
+      const roleEndY = drawMainText(content.profile.role, mainX, 24, mainWidth, 8.4, colors.accent, true, 3.7);
+      drawMainText(content.profile.intro, mainX, roleEndY + 2, mainWidth, 6.9, colors.muted, false, 3.05);
 
       let sidebarY = drawSectionHeader(labels.contact, 0, 60, sidebarWidth);
       sidebarY = drawSidebarText(`${isEnglish ? "Phone" : "Teléfono"}  ${content.profile.phone}`, sidebarY);
@@ -159,7 +156,7 @@ export default function DownloadCvButton({ language }: { language: Language }) {
       sidebarY = drawSectionHeader(labels.skills, 0, sidebarY + 2, sidebarWidth);
       content.skills.forEach((skill) => {
         sidebarY = drawSidebarText(skill.category, sidebarY, 7, true);
-        sidebarY = drawSidebarText(skill.items, sidebarY, 6.7);
+        sidebarY = drawSidebarText(skill.items, sidebarY, 6.5);
       });
 
       sidebarY = drawSectionHeader(labels.languages, 0, sidebarY + 2, sidebarWidth);
@@ -177,16 +174,14 @@ export default function DownloadCvButton({ language }: { language: Language }) {
       const timelineX = 83.5;
       const experienceTextX = 90;
       const experienceTextWidth = pageWidth - experienceTextX - 10;
-      let experienceY = 93;
-      pdfDocument.setDrawColor(colors.accent);
-      pdfDocument.setLineWidth(0.35);
-      pdfDocument.line(timelineX, experienceY, timelineX, 260);
+      let experienceY = 92;
+      const timelineStartY = experienceY;
 
       content.experience.forEach((item) => {
         pdfDocument.setFillColor(colors.accent);
         pdfDocument.circle(timelineX, experienceY, 1.1, "F");
-        experienceY = drawMainText(item.period, experienceTextX, experienceY + 1, experienceTextWidth, 7.4, colors.muted);
-        experienceY = drawMainText(`${item.role} | ${item.company}`, experienceTextX, experienceY + 1.2, experienceTextWidth, 9.4, colors.text, true, 4.4) + 1.5;
+        experienceY = drawMainText(item.period, experienceTextX, experienceY + 1, experienceTextWidth, 7.2, colors.muted);
+        experienceY = drawMainText(`${item.role} | ${item.company}`, experienceTextX, experienceY + 1, experienceTextWidth, 9.0, colors.text, true, 4.1) + 1.2;
 
         item.responsibilities.forEach((bullet) => {
           pdfDocument.setFillColor(colors.accent);
@@ -196,14 +191,18 @@ export default function DownloadCvButton({ language }: { language: Language }) {
             experienceTextX + 3,
             experienceY,
             experienceTextWidth - 3,
-            7.5,
+            7.1,
             colors.muted,
             false,
-            3.5,
-          ) + 1.2;
+            3.2,
+          ) + 1.0;
         });
-        experienceY += 5;
+        experienceY += 3.5;
       });
+
+      pdfDocument.setDrawColor(colors.accent);
+      pdfDocument.setLineWidth(0.35);
+      pdfDocument.line(timelineX, timelineStartY, timelineX, Math.min(experienceY - 2, 282));
 
       if (content.projects.length > 0) {
         let projectsY = experienceY + 10;
